@@ -4,7 +4,7 @@
 
 Northeastern University — M.S. in Information Systems. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
 
-**[Explore the portfolio →](https://manvith-reddy-dalli.roo7001.chatgpt.site/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
+**[Explore the portfolio →](https://manvith-d.github.io/portfolio/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
 
 ## Citizens Bank — Automation Engineer Co-op
 
@@ -70,4 +70,4 @@ Open `http://localhost:4173`. The site is static HTML and CSS, with no build ste
 The site can be served by any static hosting platform.
 
 ---
-Explore more work in [Manvith Reddy Dalli’s portfolio](https://manvith-reddy-dalli.roo7001.chatgpt.site/) · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257)
+Explore more work in [Manvith Reddy Dalli’s portfolio](https://manvith-d.github.io/portfolio/) · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257)
