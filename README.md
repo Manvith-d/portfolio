@@ -2,7 +2,7 @@
 
 ### Enterprise automation · Data engineering · Applied AI
 
-I build data pipelines, explore machine learning, and turn research into working software. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
+Northeastern University — M.S. in Information Systems. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
 
 **[Explore the portfolio →](https://manvith-reddy-dalli.roo7001.chatgpt.site/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
 
