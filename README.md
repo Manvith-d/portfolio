@@ -2,7 +2,7 @@
 
 ### Enterprise automation · Data engineering · Applied AI
 
-I turn complex problems into practical solutions—using automation, data, and AI to make everyday work smarter. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
+I turn complex problems into practical solutions by using automation, data, and AI to make everyday work smarter. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
 
 **[Explore the portfolio →](https://manvith-d.github.io/portfolio/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
 
