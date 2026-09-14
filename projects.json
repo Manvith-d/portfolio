@@ -1,0 +1,161 @@
+[
+  {
+    "title": "Deep Hedging",
+    "description": "A research implementation of neural hedging policies that account for transaction costs and discrete trading. Compares learned strategies with classical delta hedging and evaluates downside risk using simulated profit-and-loss distributions.",
+    "tags": [
+      "Python",
+      "PyTorch",
+      "Streamlit",
+      "NumPy",
+      "Matplotlib"
+    ],
+    "kind": "Team research project",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/LikhithNG/Deep-hedging-paper-presentation-"
+      ]
+    ]
+  },
+  {
+    "title": "GPU Inference Benchmark",
+    "description": "A reproducible harness for studying language-model inference under concurrent load. Measures latency percentiles and throughput with synthetic traffic, a simulated backend, and an optional Hugging Face backend. Quantization and cache-reuse effects are simulated in the dummy backend.",
+    "tags": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "Batching",
+      "Benchmarking"
+    ],
+    "kind": "Performance prototype",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/gpu-inference-bench"
+      ]
+    ]
+  },
+  {
+    "title": "Community Insights Dashboard",
+    "description": "An interactive dashboard for exploring NGO programs in child welfare and education. Brings together beneficiaries, attendance, donations, and outcomes with regional comparisons and optional AI-generated insights.",
+    "tags": [
+      "Python",
+      "Streamlit",
+      "Pandas",
+      "Plotly",
+      "OpenAI API"
+    ],
+    "kind": "Data analytics",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/community_insights_dashboard"
+      ]
+    ]
+  },
+  {
+    "title": "ML Crop Recommendation",
+    "description": "A web application that recommends crops from soil nutrients, pH, temperature, humidity, and rainfall. Explores several classifiers, with Random Forest selected for the app. Related work was co-authored for the Indian Journal of Natural Sciences in 2023.",
+    "tags": [
+      "Python",
+      "Flask",
+      "scikit-learn",
+      "Random Forest",
+      "HTML / CSS"
+    ],
+    "kind": "Applied machine learning",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/ml-crop-recommendation"
+      ]
+    ]
+  },
+  {
+    "title": "Cancer Gene Classification",
+    "description": "A machine learning project using the Sanger Cancer Gene Census dataset to classify oncogenes and tumor suppressor genes, distinguish mutation types, and explore chromosomal patterns. Compares Random Forest, XGBoost, and Logistic Regression.",
+    "tags": [
+      "Random Forest",
+      "XGBoost",
+      "Logistic Regression",
+      "Genomics"
+    ],
+    "kind": "Academic ML project",
+    "links": [
+      [
+        "Watch presentation",
+        "https://www.youtube.com/watch?v=uHHm-LALCiU"
+      ]
+    ],
+    "note": "Source code not published"
+  },
+  {
+    "title": "MindConnect",
+    "description": "A Java application connecting mental-health care workflows across patients, doctors, insurance providers, pharmacies, and administrators. Organizes appointments, prescriptions, insurance handling, and government welfare schemes in a shared ecosystem.",
+    "tags": [
+      "Java",
+      "Object-oriented design",
+      "UML",
+      "Role-based workflows"
+    ],
+    "kind": "Team software project",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/rakshakmoorthy/MindConnect_AEDProject"
+      ]
+    ],
+    "credit": "With Raksha Krishna Moorthy and Tanvi Reddy Bollavaram."
+  },
+  {
+    "title": "Sports Injury Management System",
+    "description": "A centralized database project for athlete injuries, treatment progress, and return-to-play clearances. Uses database views, triggers, stored procedures, and user-defined functions, with Power BI reports for injury and recovery analysis.",
+    "tags": [
+      "SQL",
+      "Stored procedures",
+      "Database design",
+      "Power BI"
+    ],
+    "kind": "Team database project",
+    "links": [],
+    "note": "Source code not published",
+    "credit": "With Abisha Vadukoot, Ayush Fulsundar, and Ranveer Rajput."
+  },
+  {
+    "title": "Number Plate Recognition",
+    "description": "A desktop application that locates number plates in uploaded vehicle images and extracts text with OCR. Combines grayscale processing, Sobel edges, thresholding, and contour filtering with a Tkinter image-upload interface.",
+    "tags": [
+      "Python",
+      "OpenCV",
+      "Tesseract OCR",
+      "Tkinter",
+      "NumPy"
+    ],
+    "kind": "Computer vision",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/number-plate-recognition"
+      ],
+      [
+        "Download source",
+        "number-plate-recognition.zip"
+      ]
+    ]
+  },
+  {
+    "title": "Autonomous Drone Delivery",
+    "description": "An undergraduate capstone combining a delivery-ordering application with simulated autonomous drone navigation. Uses Flutter and Dart for the user interface and ArduPilot with Mission Planner for flight simulation. Physical drone integration is future work.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "ArduPilot",
+      "Mission Planner",
+      "Simulation"
+    ],
+    "kind": "Team capstone project",
+    "links": [],
+    "note": "Source code not published",
+    "credit": "With Maria Nikitha and Bhuvana Ravikumar, guided by Prof. R. Indra."
+  }
+]
