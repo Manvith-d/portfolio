@@ -86,8 +86,7 @@
         "Watch presentation",
         "https://www.youtube.com/watch?v=uHHm-LALCiU"
       ]
-    ],
-    "note": "Source code not published"
+    ]
   },
   {
     "title": "MindConnect",
@@ -118,7 +117,6 @@
     ],
     "kind": "Team database project",
     "links": [],
-    "note": "Source code not published",
     "credit": "With Abisha Vadukoot, Ayush Fulsundar, and Ranveer Rajput."
   },
   {
@@ -155,7 +153,6 @@
     ],
     "kind": "Team capstone project",
     "links": [],
-    "note": "Source code not published",
     "credit": "With Maria Nikitha and Bhuvana Ravikumar, guided by Prof. R. Indra."
   }
 ]

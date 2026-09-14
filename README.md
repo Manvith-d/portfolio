@@ -1,52 +1,73 @@
-# Manvith Reddy Dalli — Portfolio
+# Manvith Reddy Dalli
 
-A personal portfolio featuring 11 projects in applied AI, data engineering, quantitative research, and software.
+### Enterprise automation · Data engineering · Applied AI
 
-[View portfolio](https://manvith-reddy-dalli.roo7001.chatgpt.site)
+I build data pipelines, explore machine learning, and turn research into working software. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
 
-## Projects
-- Greek Shield: options risk analytics with Snowflake, AWS S3, Cortex AI, and Streamlit.
-- AbDiffuser: joint antibody sequence and structure generation with diffusion models.
-- Deep Hedging: neural hedging policy research.
-- GPU Inference Benchmark: a reproducible inference-performance prototype.
-- Community Insights Dashboard: NGO program analytics.
-- ML Crop Recommendation: a Flask crop-selection application.
-- Cancer Gene Classification: supervised learning for genomic analysis.
-- MindConnect: a Java mental-health workflow application.
-- Sports Injury Management System: SQL database design and Power BI reporting.
-- Number Plate Recognition: OpenCV and Tesseract OCR desktop app.
-- Autonomous Drone Delivery: Flutter interface and ArduPilot simulation.
+**[Explore the portfolio →](https://manvith-reddy-dalli.roo7001.chatgpt.site/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
 
-Each portfolio entry includes technologies and available source or presentation links. Team contributors are credited. Source code has not been supplied for the cancer classification, sports injury, and drone projects.
+## Citizens Bank — Automation Engineer Co-op
 
-## Project code
-- [Number Plate Recognition](https://github.com/Manvith-d/number-plate-recognition)
-- [Options Risk Monitor](https://github.com/Manvith-d/options-risk-monitor)
+SOEA Automation Development Team · 2026
 
-## Run locally
-Serve this directory using any static HTTP server:
+Contributed to automations projected to save **over 1,000 hours annually** across CMOD Reject Reporting and Private Banking QC.
+
+| Project | Contribution | Impact / stage |
+| --- | --- | --- |
+| CMOD Reject Reporting | Automated daily reject-count reconciliation and exception reporting; supported production deployment and hypercare | ~309 hours/year projected |
+| Private Banking QC | Consolidated report/API data, validated activity, and generated structured Excel review workbooks | ~700 hours/year projected |
+| Cleanup Automation | Built a prototype for environment maintenance and storage efficiency | Prototype |
+| Exception Screenshot Governance | Authored a solution design for configuration checks and remediation reporting | Solution design |
+
+**Tools:** UiPath, REFramework, APIs, CMOD, mainframe systems, Excel, DataTables, Jira, Confluence, and Bitbucket.
+
+[![Process Innovator Challenge badge](citizens-badge.png)](https://credsverse.com/credentials/cc9ca96d-f007-4b6f-b387-9153b923905f?preview=1)
+
+**Process Innovator Challenge Badge — Citizens Intelligent Process Automation, 2026.** [Verify credential](https://credsverse.com/credentials/cc9ca96d-f007-4b6f-b387-9153b923905f?preview=1).
+
+## Project collection
+
+| Project | Focus | Technologies |
+| --- | --- | --- |
+| [Greek Shield](https://github.com/LikhithNG/New-Greek-shield-) | Options data and agent-assisted risk analytics | Python, Snowflake Cortex, AWS S3, Streamlit |
+| [AbDiffuser](https://github.com/PradyumnaRaghavendra/AbDiffuser) | Antibody sequence/structure diffusion research | PyTorch, NumPy, CUDA |
+| [Deep Hedging](https://github.com/LikhithNG/Deep-hedging-paper-presentation-) | Neural hedging under transaction costs | PyTorch, Streamlit, Matplotlib |
+| [GPU Inference Benchmark](https://github.com/Manvith-d/gpu-inference-bench) | Batching and inference performance exploration | Python, PyTorch, Hugging Face |
+| [Community Insights](https://github.com/Manvith-d/community_insights_dashboard) | NGO program analytics | Streamlit, Pandas, Plotly |
+| [Crop Recommendation](https://github.com/Manvith-d/ml-crop-recommendation) | Crop prediction from soil and weather | Flask, scikit-learn |
+| [Cancer Gene Classification](https://www.youtube.com/watch?v=uHHm-LALCiU) | Genomic classification research | Random Forest, XGBoost, Logistic Regression |
+| [MindConnect](https://github.com/rakshakmoorthy/MindConnect_AEDProject) | Mental-health service workflows | Java, Swing, UML |
+| Sports Injury Management | Injury, treatment, and recovery reporting | SQL, Power BI |
+| [Number Plate Recognition](https://github.com/Manvith-d/number-plate-recognition) | Desktop OCR | OpenCV, Tesseract, Tkinter |
+| Autonomous Drone Delivery | Ordering app and navigation simulation | Flutter, Dart, ArduPilot |
+| [Options Risk Monitor](https://github.com/Manvith-d/options-risk-monitor) | Local options pipeline | Python, Pandas, Snowflake |
+
+Team projects retain their original ownership and contributor credits. Research prototypes and simulations are presented with their actual scope.
+
+## Background
+
+M.S. Information Systems, Northeastern University (2024–2026). B.E. Information Science & Engineering, B.M.S. College of Engineering (2020–2024).
+
+Experience includes Citizens Bank; **[Agentic Universe](https://agenticuniverse.ai) (formerly Formi CxAI)**, where I worked on AI research and data engineering; and CloudFuze, focused on API-based data integration.
+
+## Run this portfolio
 
 ```sh
 python3 -m http.server 4173
 ```
 
-Open `http://localhost:4173`.
+Open `http://localhost:4173`. The site is static HTML and CSS, with no build step or API keys.
 
-## Edit
-- `index.html`: all public portfolio content.
-- `style.css`: responsive layout and styling.
-- `resume.pdf`: downloadable master résumé.
-- `favicon.svg`: site icon.
-- `projects.json`: editorial reference for the nine non-featured projects; edits here do not automatically update HTML.
-- Source ZIPs: downloadable snapshots of the two locally supplied code projects.
+| File | Purpose |
+| --- | --- |
+| `index.html` | Portfolio content |
+| `style.css` | Responsive layout and styling |
+| `projects.json` | Editorial reference; does not automatically render the HTML |
+| `resume.pdf` | Original supplied master résumé |
+| `citizens-badge.png` | Verified recognition artwork |
+| Source ZIP files | Downloadable local project snapshots |
 
-No build process, JavaScript, backend, or API keys are required. Google Fonts are optional; system fonts provide the fallback.
+The site can be served by any static hosting platform.
 
-## Host
-The contents can be deployed to any static host. To use GitHub Pages, select **Settings → Pages → Deploy from a branch → main → /(root)**.
-
-## Profiles
-- [GitHub](https://github.com/Manvith-d)
-- [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257)
-
-Descriptions are grounded in the supplied résumé, presentations, reports, code, and linked repositories. Research implementations and simulated results are identified accurately. Local environment files, credentials, logs, caches, and sample vehicle photos are excluded from the project source downloads.
+---
+Explore more work in [Manvith Reddy Dalli’s portfolio](https://manvith-reddy-dalli.roo7001.chatgpt.site/) · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257)
