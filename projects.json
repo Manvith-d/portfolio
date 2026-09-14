@@ -152,7 +152,16 @@
       "Simulation"
     ],
     "kind": "Team capstone project",
-    "links": [],
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/autonomous-drone-delivery"
+      ],
+      [
+        "Research paper",
+        "https://github.com/Manvith-d/autonomous-drone-delivery/blob/main/research-paper.pdf"
+      ]
+    ],
     "credit": "With Maria Nikitha and Bhuvana Ravikumar, guided by Prof. R. Indra."
   }
 ]

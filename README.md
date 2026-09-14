@@ -29,7 +29,7 @@ Contributed to automations projected to save **over 1,000 hours annually** acros
 
 | Project | Focus | Technologies |
 | --- | --- | --- |
-| [Greek Shield](https://github.com/LikhithNG/New-Greek-shield-) | Options data and agent-assisted risk analytics | Python, Snowflake Cortex, AWS S3, Streamlit |
+| [Greek Shield](https://github.com/Manvith-d/greek-shield) | Options data and agent-assisted risk analytics | Python, Snowflake Cortex, AWS S3, Streamlit |
 | [AbDiffuser](https://github.com/PradyumnaRaghavendra/AbDiffuser) | Antibody sequence/structure diffusion research | PyTorch, NumPy, CUDA |
 | [Deep Hedging](https://github.com/LikhithNG/Deep-hedging-paper-presentation-) | Neural hedging under transaction costs | PyTorch, Streamlit, Matplotlib |
 | [GPU Inference Benchmark](https://github.com/Manvith-d/gpu-inference-bench) | Batching and inference performance exploration | Python, PyTorch, Hugging Face |
@@ -39,7 +39,7 @@ Contributed to automations projected to save **over 1,000 hours annually** acros
 | [MindConnect](https://github.com/rakshakmoorthy/MindConnect_AEDProject) | Mental-health service workflows | Java, Swing, UML |
 | Sports Injury Management | Injury, treatment, and recovery reporting | SQL, Power BI |
 | [Number Plate Recognition](https://github.com/Manvith-d/number-plate-recognition) | Desktop OCR | OpenCV, Tesseract, Tkinter |
-| Autonomous Drone Delivery | Ordering app and navigation simulation | Flutter, Dart, ArduPilot |
+| [Autonomous Drone Delivery](https://github.com/Manvith-d/autonomous-drone-delivery) | Ordering app and navigation simulation | Flutter, Dart, ArduPilot |
 | [Options Risk Monitor](https://github.com/Manvith-d/options-risk-monitor) | Local options pipeline | Python, Pandas, Snowflake |
 
 Team projects retain their original ownership and contributor credits. Research prototypes and simulations are presented with their actual scope.
