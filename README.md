@@ -1,6 +1,18 @@
-# Manvith Reddy Dalli
+<p align="center"><img src="project-banner.svg" alt="MANVITH REDDY DALLI: Automation. Data engineering. Applied AI." width="100%"/></p>
 
-### Enterprise automation · Data engineering · Applied AI
+<h1 align="center">Manvith Reddy Dalli</h1>
+
+<p align="center">Automation. Data engineering. Applied AI.</p>
+
+<p align="center"><code>HTML</code> &nbsp; <code>CSS</code> &nbsp; <code>GitHub Pages</code> &nbsp; <code>Research</code></p>
+
+<p align="center"><a href="#citizens-bank--automation-engineer-co-op">Citizens Bank — Automation Engineer Co-op</a> · <a href="#project-collection">Project collection</a> · <a href="#background">Background</a> · <a href="#run-this-portfolio">Run this portfolio</a></p>
+
+<table><tr><td width="33%" valign="top"><h3>Enterprise automation</h3><p>Citizens co-op projects and projected business impact.</p></td><td width="33%" valign="top"><h3>Research and engineering</h3><p>Quantitative finance, AI, computer vision, and data.</p></td><td width="33%" valign="top"><h3>Explore the evidence</h3><p>Repositories, papers, presentations, and source downloads.</p></td></tr></table>
+
+---
+
+<a href="https://manvith-d.github.io/portfolio/"><img src="portrait.png" alt="Manvith Reddy Dalli" width="160" align="right"/></a>
 
 I turn complex problems into practical solutions by using automation, data, and AI to make everyday work smarter. My work spans enterprise automation, data engineering, and applied AI—from streamlining banking workflows at Citizens to building options risk analytics and generative models.
 
@@ -26,6 +38,8 @@ Contributed to automations projected to save **over 1,000 hours annually** acros
 **Process Innovator Challenge Badge — Citizens Intelligent Process Automation, 2026.** [Verify credential](https://credsverse.com/credentials/cc9ca96d-f007-4b6f-b387-9153b923905f?preview=1).
 
 ## Project collection
+
+![Portfolio navigation](project-workflow.svg)
 
 | Project | Focus | Technologies |
 | --- | --- | --- |
