@@ -6,7 +6,7 @@
 
 <p align="center"><code>HTML</code> &nbsp; <code>CSS</code> &nbsp; <code>GitHub Pages</code> &nbsp; <code>Research</code></p>
 
-<p align="center"><a href="#citizens-bank--automation-engineer-co-op">Citizens Bank — Automation Engineer Co-op</a> · <a href="#project-collection">Project collection</a> · <a href="#background">Background</a> · <a href="#run-this-portfolio">Run this portfolio</a></p>
+<p align="center"><a href="#citizens-bank--automation-developer-co-op">Citizens Bank — Automation Developer Co-op</a> · <a href="#project-collection">Project collection</a> · <a href="#background">Background</a> · <a href="#run-this-portfolio">Run this portfolio</a></p>
 
 <table><tr><td width="33%" valign="top"><h3>Enterprise automation</h3><p>Citizens co-op projects and projected business impact.</p></td><td width="33%" valign="top"><h3>Research and engineering</h3><p>Quantitative finance, AI, computer vision, and data.</p></td><td width="33%" valign="top"><h3>Explore the evidence</h3><p>Repositories, papers, presentations, and source downloads.</p></td></tr></table>
 
@@ -18,7 +18,7 @@ I turn complex problems into practical solutions by using automation, data, and 
 
 **[Explore the portfolio →](https://manvith-d.github.io/portfolio/)** · [LinkedIn](https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257) · [Résumé](resume.pdf)
 
-## Citizens Bank — Automation Engineer Co-op
+## Citizens Bank — Automation Developer Co-op
 
 SOEA Automation Development Team · 2026
 
