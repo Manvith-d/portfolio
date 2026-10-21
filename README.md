@@ -45,6 +45,7 @@ Contributed to automations projected to save **over 1,000 hours annually** acros
 | --- | --- | --- |
 | [Greek Shield](https://github.com/Manvith-d/greek-shield) | Options data and agent-assisted risk analytics | Python, Snowflake Cortex, AWS S3, Streamlit |
 | [AbDiffuser](https://github.com/PradyumnaRaghavendra/AbDiffuser) | Antibody sequence/structure diffusion research | PyTorch, NumPy, CUDA |
+| [AegisFlow](https://github.com/Manvith-d/aegisflow) | Agentic claims platform: LangGraph agents over MCP, Kafka, Neo4j GraphRAG | LangGraph, MCP, Kafka, Neo4j, Kubernetes |
 | [OntoBridge](https://github.com/Manvith-d/ontobridge) | Ontology-aligned agents that generate Fabric star schemas | LangGraph, SPARQL, Spark SQL, FastAPI |
 | [Deep Hedging](https://github.com/LikhithNG/Deep-hedging-paper-presentation-) | Neural hedging under transaction costs | PyTorch, Streamlit, Matplotlib |
 | [GPU Inference Benchmark](https://github.com/Manvith-d/gpu-inference-bench) | Batching and inference performance exploration | Python, PyTorch, Hugging Face |

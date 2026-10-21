@@ -9,6 +9,7 @@ export const TOPICS = [
     head: 'Why Manvith', points: [
       '<strong>Enterprise impact:</strong> at Citizens Bank he built UiPath automations projected to save <strong>1,000+ hours of manual work a year</strong>, and supported them through production deployment and hypercare.',
       '<strong>End-to-end data and AI:</strong> on Greek Shield he helped take raw options data through AWS S3 into a six-layer Snowflake architecture, computed Black–Scholes Greeks as UDFs, and added a four-agent AI workflow with Slack alerts.',
+      '<strong>Agentic AI platforms:</strong> built AegisFlow (five LangGraph agents over MCP, Kafka, Neo4j GraphRAG, Kubernetes) and OntoBridge (ontology-aligned agents that generate Fabric Lakehouse star schemas), both with evals and CI gates.',
       '<strong>Research depth:</strong> on AbDiffuser he built parallel multi-GPU training pipelines for generative antibody design, achieving a <strong>10x increase in training throughput</strong>.',
       '<strong>Proven across teams:</strong> AI research and data engineering at Agentic Universe, API-based ETL at CloudFuze, a co-authored journal paper, and three AI certifications.',
       '<strong>Ready now:</strong> M.S. in Information Systems from Northeastern (2026) and open to full-time roles.',
@@ -27,6 +28,7 @@ export const TOPICS = [
     head: 'Data engineering', points: [
       '<strong>Greek Shield:</strong> ELT from Yahoo Finance through AWS S3 into a six-layer Snowflake medallion architecture (RAW → DATA → FEATURES → PROCESSED → ALERTS → AGENTS), with Greeks computed as Snowflake UDFs.',
       '<strong>OntoBridge:</strong> ontology-driven alignment of 12 sources, then generated bronze, silver and gold star schemas in Spark SQL for a Fabric Lakehouse.',
+      '<strong>AegisFlow:</strong> Kafka workflows that decided 30,000 claims exactly once through tool failures, duplicates and a worker crash.',
       '<strong>Agentic Universe:</strong> Python and SQL ETL pipelines processing 1M+ data points for distributed AI workflows.',
       '<strong>CloudFuze:</strong> API-based ETL into a scalable analytics platform, plus anomaly detection that improved data compliance and reliability by 30%.',
       '<strong>Citizens Bank:</strong> enterprise data collection, validation, transformation and delivery inside banking automations.',
@@ -36,6 +38,7 @@ export const TOPICS = [
     head: 'AI and machine learning', points: [
       '<strong>AbDiffuser:</strong> diffusion models for generative antibody design, trained on multi-GPU clusters with 10x training throughput.',
       '<strong>Greek Shield:</strong> a four-agent workflow combining Snowflake Cortex and GPT-based reasoning.',
+      '<strong>AegisFlow:</strong> five LangGraph agents over MCP tools, GraphRAG on Neo4j with cited clauses, Kafka and Kubernetes.',
       '<strong>OntoBridge:</strong> LangGraph agents with SPARQL-grounded RAG, guarded LLM adjudication and human review.',
       '<strong>Deep Hedging:</strong> neural hedging policies that account for transaction costs.',
       '<strong>GPU Inference Benchmark:</strong> continuous batching and latency/throughput measurement for language-model serving.',
@@ -70,7 +73,7 @@ export const TOPICS = [
     links: [['Email', 'mailto:reddydalli.m@northeastern.edu'], ['LinkedIn', 'https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257'], ['Résumé', 'resume.pdf'], ['GitHub', 'https://github.com/Manvith-d']],
     next: ['hire', 'experience'] },
   { id: 'projects', q: 'What has he built?', keys: 'projects project built build portfolio favorite favourite highlight highlights featured',
-    head: 'Projects', text: '<p>The featured two are <strong>Greek Shield</strong> (options risk analytics on Snowflake with AI agents) and <strong>AbDiffuser</strong> (diffusion models for antibody design). There are eleven more, from OntoBridge’s ontology-alignment agents to deep hedging and GPU inference benchmarking.</p>',
+    head: 'Projects', text: '<p>Four are featured: <strong>Greek Shield</strong> (options risk analytics on Snowflake with AI agents) and <strong>AbDiffuser</strong> (diffusion models for antibody design). The other two featured are <strong>AegisFlow</strong> (an agentic claims platform on LangGraph, MCP, Kafka and Neo4j) and <strong>OntoBridge</strong> (ontology-aligned agents that generate Fabric star schemas). There are ten more, from deep hedging to GPU inference benchmarking.</p>',
     next: ['greek', 'abdiffuser', 'ontobridge'] },
 
   // Citizens Bank
@@ -157,6 +160,17 @@ export const TOPICS = [
     team: 'Built with Pradyumna Raghavendra and Udaykumar Patel at Northeastern.',
     links: [gh('Manvith-d/AbDiffuser'), ['Team repo', 'https://github.com/PradyumnaRaghavendra/AbDiffuser'], ['Presentation', 'https://www.youtube.com/watch?v=SSFUJwct3KA'], ['Write-up', 'writing/abdiffuser-notes.html']],
     next: ['ai', 'hedging', 'gpu'] },
+  { id: 'aegisflow', q: 'Tell me about AegisFlow', keys: 'aegisflow aegis flow claims claim insurance agentic platform mcp model context protocol kafka neo4j graphrag kubernetes k8s langfuse exactly once idempotent retries fraud adjuster human review',
+    head: 'AegisFlow, enterprise agentic AI claims platform', meta: 'Open-source project', stack: 'Python, LangGraph, MCP (Model Context Protocol), Kafka, Neo4j (vector index + graph), bge-small embeddings, FastAPI, Kubernetes, GitHub Actions, GHCR, Langfuse',
+    points: [
+      '<strong>Five LangGraph agents</strong> (intake, policy validation, fraud triage, adjudication, human review) decide insurance claims, working only through <strong>MCP tools</strong>. Policy validation and fraud triage run in parallel, and human review pauses the graph with <code>interrupt()</code> until an adjuster answers.',
+      '<strong>Kafka workflows and FastAPI microservices with idempotent retries:</strong> <strong>30,000 synthetic claims</strong> ran through Kafka and Neo4j with injected tool failures, duplicate deliveries and a worker crash, and every claim was decided exactly once.',
+      '<strong>GraphRAG on Neo4j:</strong> vector search finds what a claim is about, graph traversal finds the policy clauses that govern it, and every decision cites them. It was 100% grounded across <strong>500 held-out eval cases</strong>.',
+      '<strong>Kubernetes with CI/CD:</strong> every push deploys to a kind cluster and smoke-tests it, publishes images to GHCR, traces each claim in Langfuse, and gates on accuracy, silent errors, citations, latency and cost.',
+      'Designed to know when to ask a person: ambiguous perils, possible exclusions and fraud signals go to review instead of being guessed.',
+    ],
+    why: 'Claims teams spend most of their time on routine claims and still miss the risky ones. AegisFlow decides the clear cases with citations a reviewer can check, and routes the uncertain or suspicious ones to an adjuster, without ever deciding the same claim twice.',
+    links: [gh('Manvith-d/aegisflow')], next: ['ontobridge', 'ai', 'data'] },
   { id: 'ontobridge', q: 'Tell me about OntoBridge', keys: 'ontobridge onto bridge ontology ontologies rdf owl sparql langgraph semantic schema schemas alignment mapping lineage provenance fabric lakehouse star spark knowledge graph rag',
     head: 'OntoBridge, agentic semantic data platform', meta: 'Open-source project', stack: 'Python, LangGraph, LangChain, rdflib (RDF/OWL, SPARQL), PROV-O, Spark SQL, Microsoft Fabric Lakehouse, FastAPI, SQLite, pytest, GitHub Actions',
     points: [
@@ -167,7 +181,7 @@ export const TOPICS = [
       'On 54 held-out column names it auto-accepted 43 mappings with <strong>100% precision</strong>. Every miss went to a reviewer or abstained instead of being silently wrong.',
     ],
     why: 'Every new data source starts with someone working out what each column means and where it belongs in the warehouse. OntoBridge automates the confident cases, asks a person about the rest, and records who decided what, so the generated tables can be trusted and audited.',
-    links: [gh('Manvith-d/ontobridge')], next: ['data', 'ai', 'greek'] },
+    links: [gh('Manvith-d/ontobridge')], next: ['aegisflow', 'data', 'ai'] },
   { id: 'hedging', q: 'Tell me about Deep Hedging', keys: 'deep hedging hedge neural transaction costs delta pnl profit loss',
     head: 'Deep Hedging', meta: 'Team research project', stack: 'Python, PyTorch, Streamlit, NumPy, Matplotlib',
     points: [

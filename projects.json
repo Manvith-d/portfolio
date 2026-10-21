@@ -1,5 +1,26 @@
 [
   {
+    "title": "AegisFlow",
+    "description": "Five LangGraph agents decide insurance claims through MCP tools, read policy language with GraphRAG on Neo4j, and run as Kafka-driven FastAPI microservices on Kubernetes. 30,000 claims decided exactly once under injected faults; Langfuse tracing and CI gates for accuracy, latency and cost.",
+    "tags": [
+      "Python",
+      "LangGraph",
+      "MCP",
+      "Kafka",
+      "Neo4j",
+      "Kubernetes",
+      "FastAPI",
+      "Langfuse"
+    ],
+    "kind": "Enterprise agentic AI platform",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/aegisflow"
+      ]
+    ]
+  },
+  {
     "title": "OntoBridge",
     "description": "LangGraph agents align 12 messy CSV and JSON sources with RDF/OWL ontologies using SPARQL graph retrieval, send uncertain mappings to human review, record PROV-O lineage and a hash-chained audit log, and generate Spark SQL star schemas for a Fabric Lakehouse across four domains.",
     "tags": [

@@ -70,7 +70,7 @@ function render(t, intent) {
 const JUMP = {
   greek: '#greek-shield', monitor: '#greek-shield', abdiffuser: '#abdiffuser',
   citizens: '#citizens', cmod: '#citizens', pbqc: '#citizens', cleanup: '#citizens', screenshot: '#citizens', badge: '#citizens',
-  ontobridge: '#p-ontobridge', hedging: '#p-deep-hedging', gpu: '#p-gpu-inference-benchmark', translens: '#p-translens', community: '#p-community-insights',
+  ontobridge: '#ontobridge', aegisflow: '#aegisflow', hedging: '#p-deep-hedging', gpu: '#p-gpu-inference-benchmark', translens: '#p-translens', community: '#p-community-insights',
   crop: '#p-crop-recommendation', cancer: '#p-cancer-genes', mindconnect: '#p-mindconnect', sports: '#p-sports-injury',
   plate: '#p-number-plate', drone: '#p-drone-delivery', projects: '#projects', writing: '#writing',
   experience: '#about', education: '#about', certs: '#about', contact: '#contact',

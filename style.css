@@ -323,6 +323,17 @@ html.js .keys-open[hidden]{display:inline}
 .layers .wire{stroke:var(--line-ui);stroke-width:1;fill:none;stroke-dasharray:3 3}
 .layers .node{fill:var(--surface);stroke:var(--accent);stroke-width:1.25}
 .layers .flow{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-dasharray:4 6;animation:dash 1.6s linear infinite}
+/* AegisFlow and OntoBridge: agents light up in turn, Kafka segments fill, a claim travels the graph */
+.layers .pill{fill:var(--surface);stroke:var(--line-ui);stroke-width:1}
+.layers .pl{fill:var(--ink);letter-spacing:.1em}
+.layers .step{animation:step 4.2s ease-in-out infinite;animation-delay:calc(var(--i) * .55s)}
+@keyframes step{0%,100%{stroke:var(--line-ui);fill:var(--surface)}6%,20%{stroke:var(--accent);fill:color-mix(in oklab,var(--accent) 16%,var(--surface))}}
+.layers .seg{fill:color-mix(in oklab,var(--surface) 80%,transparent);stroke:var(--line-ui);stroke-width:1;animation:seg 2.4s steps(1) infinite;animation-delay:calc(var(--i) * .4s)}
+@keyframes seg{0%,100%{fill:color-mix(in oklab,var(--surface) 80%,transparent)}10%,30%{fill:color-mix(in oklab,var(--accent) 45%,var(--surface))}}
+.layers .packet{fill:var(--accent)}
+[data-side=dark] .layers .packet{filter:drop-shadow(0 0 3px color-mix(in oklab,var(--saber) 80%,transparent))}
+.layers .dim{transition:opacity 500ms var(--e-out),transform 500ms var(--e-out);transition-delay:calc(300ms + var(--i) * 90ms);transform-box:fill-box}
+html.js .dossier:not(.in) .dim{opacity:0;transform:translateY(6px)}
 @keyframes dash{to{stroke-dashoffset:-20}}
 html.js .dossier:not(.in) .slab{opacity:0;transform:translateY(6px)}
 .slab{transition-delay:calc(var(--i) * 50ms)}
@@ -624,7 +635,8 @@ html.js .dossier:not(.in) .slab{opacity:0;transform:translateY(6px)}
   *,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0ms!important}
   body{transition-duration:var(--d-2)!important}
   html.js .reveal:not(.in){opacity:1;transform:none}
-  .layers .flow{animation:none}
+  .layers .flow,.layers .step,.layers .seg{animation:none}
+  .layers .packet{display:none}
   .scan{display:none}
   ::view-transition-new(root){animation:none}
 }
@@ -727,12 +739,5 @@ html.lenis{scroll-behavior:auto}
 .lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
 .lenis [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-smooth iframe{pointer-events:none}
-/* Vanta Force aura behind the portrait */
-.aura{position:absolute;inset:-28%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
-.aura.on{opacity:.9}
-[data-side=dark] .aura{mix-blend-mode:screen}
-[data-side=light] .aura{mix-blend-mode:difference}
-[data-side=light] .aura.on{opacity:.8}
-.aura canvas{width:100%!important;height:100%!important}
 /* Variable proximity letters */
 .name .vp{font-variation-settings:"wght" 600,"opsz" 96}
