@@ -8,3 +8,47 @@
 
 /* Hero connection and availability */
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.hero-actions .button{margin-top:0;gap:14px;min-height:52px}.button-secondary{background:transparent;color:var(--accent);border:1px solid #80965f}.button-secondary:hover{background:rgba(212,247,141,.09);color:var(--accent)}.hero-side .portrait{margin-bottom:14px}.hero-side .availability{display:inline-flex;align-items:center;gap:9px;font-size:14px;line-height:1.5;color:var(--accent);padding:8px 12px;border:1px solid #46583c;border-radius:999px;background:#1b281c;margin-bottom:24px}.availability span{width:7px;height:7px;flex-shrink:0;border-radius:50%;background:var(--accent)}@media(max-width:420px){.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .button{justify-content:space-between}}
+
+
+/* Motion layer (see main.js) */
+.progress{position:fixed;inset:0 0 auto;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:0;z-index:20;box-shadow:0 0 12px var(--accent)}
+header{position:sticky;top:0;z-index:10;transition:background .3s,backdrop-filter .3s}
+header.scrolled{background:rgba(17,23,19,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(40% 35% at 20% 20%,rgba(212,247,141,.09),transparent 70%),radial-gradient(35% 30% at 85% 70%,rgba(120,200,140,.07),transparent 70%);animation:drift 22s ease-in-out infinite alternate}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(500px circle at var(--mx,50%) var(--my,-500px),rgba(212,247,141,.06),transparent 60%)}
+@keyframes drift{to{transform:translate(6%,-4%) rotate(8deg)}}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1) calc(var(--d,0)*90ms),transform .7s cubic-bezier(.2,.7,.2,1) calc(var(--d,0)*90ms)}
+.js .reveal.in{opacity:1;transform:none}
+.feature,.citizens-card,.badge-card{position:relative;transition:transform .35s,border-color .35s,box-shadow .35s}
+.feature::after,.citizens-card::after,.badge-card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(360px circle at var(--cx) var(--cy),rgba(212,247,141,.10),transparent 65%)}
+.feature:hover,.citizens-card:hover,.badge-card:hover{transform:translateY(-4px);border-color:#6f8a55;box-shadow:0 18px 40px -20px rgba(212,247,141,.25)}
+.feature:hover::after,.citizens-card:hover::after,.badge-card:hover::after{opacity:1}
+.project{transition:background .3s,padding .3s}
+.project:hover{background:linear-gradient(90deg,rgba(212,247,141,.05),transparent 70%)}
+.project:hover .number{color:var(--accent)}
+.project h3,.feature h3{transition:color .25s}
+.project:hover h3,.feature:hover h3{color:var(--accent)}
+.tags span{transition:border-color .25s,color .25s}
+.tags span:hover{border-color:var(--accent);color:var(--accent)}
+.button{transition:transform .2s,background .2s,box-shadow .2s}
+.button:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(212,247,141,.5)}
+.button span{transition:transform .25s}
+.button:hover span{transform:translate(3px,-1px)}
+a{transition:color .2s}
+.links a{background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 1px no-repeat;transition:background-size .3s,color .2s}
+.links a:hover{background-size:100% 1px}
+.portrait{transition:transform .5s,filter .5s;filter:saturate(.9)}
+.portrait:hover{transform:scale(1.02) rotate(-1deg);filter:saturate(1.05)}
+.availability span{animation:ping 2s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(212,247,141,.6)}100%{box-shadow:0 0 0 10px rgba(212,247,141,0)}}
+.flow span{display:inline-block;animation:nudge 1.6s ease-in-out infinite}
+.flow span:nth-of-type(2){animation-delay:.4s}
+@keyframes nudge{50%{transform:translateX(4px);opacity:.5}}
+.flow b{transition:border-color .3s,background .3s}
+.feature:hover .flow b{border-color:var(--accent);background:rgba(212,247,141,.05)}
+.greeks span{display:inline-block;animation:float 4s ease-in-out infinite}
+.greeks span:nth-child(2){animation-delay:-.8s}.greeks span:nth-child(3){animation-delay:-1.6s}.greeks span:nth-child(4){animation-delay:-2.4s}.greeks span:nth-child(5){animation-delay:-3.2s}
+@keyframes float{50%{transform:translateY(-6px)}}
+h1 span{background:linear-gradient(90deg,var(--accent),#9fe0a8,var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
