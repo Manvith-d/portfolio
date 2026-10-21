@@ -169,6 +169,12 @@ html.js .reveal:not(.in){opacity:0;transform:translateY(14px)}
 .ignite{position:relative;display:block;width:min(100%,640px);height:2px;margin:var(--s5) 0 var(--s6);background:var(--blade-core);box-shadow:var(--blade);border-radius:2px;transform-origin:left}
 .ignite::before{content:"";position:absolute;left:-14px;top:-1px;width:10px;height:4px;border-radius:1px;background:var(--faint)}
 .ignite::after{content:"";position:absolute;right:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--saber-core);box-shadow:0 0 12px 4px var(--saber);opacity:0}
+.rotor{font:600 clamp(1.4rem,1.1rem + 1.2vw,2.1rem)/1.2 var(--f-display);letter-spacing:-.02em;color:var(--muted);margin:calc(var(--s2) * -1) 0 var(--s5);min-height:1.2em}
+.rotor-w{position:relative;display:inline-block;white-space:nowrap}
+.rotor-t{display:inline-block;color:var(--accent)}
+.rotor-blade{position:absolute;top:-8%;bottom:-8%;left:0;width:2px;border-radius:2px;background:var(--blade-core);box-shadow:var(--blade);opacity:0;pointer-events:none}
+.rotor-dot{color:var(--accent)}
+@media(max-width:600px){.rotor{min-height:2.4em}.rotor-w{white-space:normal}}
 .lead{font-size:var(--t-lead);line-height:1.6;color:var(--muted);max-width:34ch}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s3) var(--s4);margin-top:var(--s6)}
 .hero-links{display:flex;gap:var(--s5);margin-top:var(--s5);font-size:.9rem;color:var(--muted)}
@@ -199,6 +205,7 @@ html.js .reveal:not(.in){opacity:0;transform:translateY(14px)}
   .ignite{animation:ignite-line 520ms var(--e-spring) 240ms both}
   .ignite::after{animation:tip 600ms ease-out 240ms both}
   .hint{animation:rise 420ms var(--e-out) 520ms both}
+  .rotor{animation:rise 420ms var(--e-out) 280ms both}
   .hero .lead{animation:rise 420ms var(--e-out) 340ms both}
   .hero .actions{animation:rise 420ms var(--e-out) 380ms both}
   .hero-links{animation:rise 420ms var(--e-out) 440ms both}
@@ -644,6 +651,7 @@ html:not(.js) .drill{display:none}
 .drill-score b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
 .drill-stage{position:relative;height:200px;padding:0;overflow:hidden;cursor:ns-resize;touch-action:pan-y}
 .drill-stage.playing{touch-action:none}
+.drill-stage[data-game=light]{cursor:pointer}
 .drill-stage:focus-visible{outline-offset:2px}
 .drill-canvas{position:absolute;inset:1px;width:calc(100% - 2px);height:calc(100% - 2px)}
 .drill-overlay{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:var(--s4);text-align:center;background:color-mix(in oklab,var(--surface) 55%,transparent);transition:opacity var(--d-3)}
@@ -672,3 +680,42 @@ html:not(.js) .drill{display:none}
   a[href^=http]::after{content:" (" attr(href) ")";font-size:.75em;color:#555}
   .hero{min-height:0}
 }
+
+/* Case-file diagrams (archive). Classes: l line, a accent line, f accent fill, k ink fill, b box */
+.mini{position:relative;height:170px;margin:0 0 var(--s5);border:1px solid var(--line);border-radius:var(--r-xs);background:color-mix(in oklab,var(--surface-2) 55%,transparent);overflow:hidden}
+.mini svg{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
+.mini .l{fill:none;stroke:var(--line-ui);stroke-width:1}
+.mini .a{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round}
+.mini .f{fill:var(--accent)}
+.mini .k{fill:var(--ink)}
+.mini .b{fill:var(--surface);stroke:var(--line-ui);stroke-width:1}
+.mini .l-fill{fill:var(--line-ui);opacity:.6}
+.mini .grid{stroke:var(--line);stroke-width:1}
+.mini .dash{stroke-dasharray:3 4}
+.mini text{font:500 8.5px var(--f-mono);letter-spacing:.12em;fill:var(--faint)}
+.mini .t-a{fill:var(--accent)}
+.mini .plate{font:600 25px var(--f-mono);letter-spacing:.04em;fill:var(--ink)}
+.mini .ocr{font-size:12px;letter-spacing:0}
+.mini .draw{stroke-dasharray:900;stroke-dashoffset:900;animation:m-draw 5s var(--e-inout) infinite}
+@keyframes m-draw{60%,100%{stroke-dashoffset:0}}
+.mini .grow{transform-box:fill-box;transform-origin:bottom;animation:m-grow 5s var(--e-out) infinite;animation-delay:calc(var(--i,0) * 70ms)}
+@keyframes m-grow{0%{transform:scaleY(.05)}35%,85%{transform:scaleY(1)}100%{transform:scaleY(.05)}}
+.mini .grow-x{transform-box:fill-box;transform-origin:left;animation:m-grow-x 4s var(--e-out) infinite;animation-delay:calc(var(--i,0) * 160ms)}
+.mini .grow-x.slow{animation-duration:6s}
+@keyframes m-grow-x{0%{transform:scaleX(0)}45%,85%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+.mini .flowing{animation:m-flow 1.2s linear infinite}
+@keyframes m-flow{to{stroke-dashoffset:-14}}
+.mini .m-pulse{animation:m-pulse 1.8s ease-in-out infinite}
+@keyframes m-pulse{50%{stroke:var(--accent)}}
+.mini .blink{animation:m-blink 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 300ms)}
+@keyframes m-blink{50%{opacity:.25}}
+.mini .lang{opacity:0;animation:m-lang 6s infinite;animation-delay:calc(var(--i,0) * 1.5s)}
+@keyframes m-lang{0%,4%{opacity:0}8%,22%{opacity:1}26%,100%{opacity:0}}
+.mini .scan{animation:m-scan 3.6s var(--e-inout) infinite}
+@keyframes m-scan{0%{transform:translateX(0);opacity:.9}45%{transform:translateX(237px);opacity:.9}50%,100%{transform:translateX(237px);opacity:0}}
+.mini .lock{transform-box:fill-box;transform-origin:center;animation:m-lock 3.6s var(--e-out) infinite}
+@keyframes m-lock{0%,45%{transform:scale(1.12);opacity:0}55%,95%{transform:scale(1);opacity:1}100%{opacity:0}}
+.mini .type{opacity:0;animation:m-type 3.6s steps(1) infinite;animation-delay:calc(1.9s + var(--i,0) * 90ms)}
+@keyframes m-type{0%{opacity:1}40%{opacity:0}}
+@media(max-width:600px){.mini{height:150px}.mini text{font-size:11px}.mini .plate{font-size:27px}}
+@media(prefers-reduced-motion:reduce){.mini .draw{stroke-dashoffset:0}.mini .grow,.mini .grow-x{transform:none}.mini .lang[style*="--i:0"],.mini .type{opacity:1}.mini .scan{opacity:0}.mini .lock{opacity:1;transform:none}}

@@ -190,6 +190,31 @@ if (timeline) {
   charge();
 }
 
+// "I build ___": the blade sweeps across to swap in the next phrase (pauses on hover, off under reduced motion)
+const rotor = $('.rotor-w');
+if (rotor && !still) {
+  const words = ['enterprise automations', 'Snowflake data pipelines', 'multi-agent risk analytics', 'diffusion models for antibodies', 'LLM-powered document tools'];
+  const text = $('.rotor-t', rotor), blade = $('.rotor-blade', rotor);
+  let i = 0, hold = false;
+  rotor.parentElement.addEventListener('pointerenter', () => (hold = true));
+  rotor.parentElement.addEventListener('pointerleave', () => (hold = false));
+  const inOut = 'cubic-bezier(.65,0,.35,1)', out = 'cubic-bezier(.16,1,.3,1)';
+  setInterval(() => {
+    if (hold || document.hidden || rotor.getBoundingClientRect().bottom < 0) return;
+    const w = text.offsetWidth;
+    blade.animate([{ transform: `translateX(${w}px)`, opacity: 1 }, { transform: 'translateX(0)', opacity: 1 }], { duration: 360, easing: inOut, fill: 'forwards' });
+    text.animate([{ clipPath: 'inset(-10% 0 -10% 0)' }, { clipPath: 'inset(-10% 100% -10% 0)' }], { duration: 360, easing: inOut, fill: 'forwards' });
+    setTimeout(swap, 360); // a timer, not .finished, so a throttled animation clock can't stall the rotation
+  }, 2900);
+  function swap() {
+    i = (i + 1) % words.length;
+    text.textContent = words[i];
+    const w2 = text.offsetWidth;
+    blade.animate([{ transform: 'translateX(0)', opacity: 1 }, { transform: `translateX(${w2}px)`, opacity: 1, offset: 0.85 }, { transform: `translateX(${w2}px)`, opacity: 0 }], { duration: 560, easing: out, fill: 'forwards' });
+    text.animate([{ clipPath: 'inset(-10% 100% -10% 0)' }, { clipPath: 'inset(-10% 0 -10% 0)' }], { duration: 560, easing: out, fill: 'forwards' });
+  }
+}
+
 // Name sheen and badge foil follow the pointer
 if (fine.matches) {
   const name = $('.name');
@@ -512,6 +537,9 @@ if (clock) {
   tickClock();
   setInterval(tickClock, 30000);
 }
+
+// Diagrams use SVG motion paths, which CSS can't pause: stop them under reduced motion
+if (still) $$('.mini svg').forEach(svg => svg.pauseAnimations?.());
 
 // Load the heavier visuals only where they make sense
 if (!forced && $('.field')?.getContext) import('./field.js').catch(err => console.warn(err));
