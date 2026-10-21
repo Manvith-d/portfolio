@@ -21,6 +21,8 @@ requestAnimationFrame(function frame(now) {
 });
 addEventListener('pointermove', e => Object.assign(P, { x: e.clientX, y: e.clientY, active: true, last: performance.now(), type: e.pointerType }), { passive: true });
 document.addEventListener('pointerleave', () => { P.active = false; });
+// In-page jumps: Lenis when motion.js is running, native scrolling otherwise
+export const go = (el, center = false) => (window.siteScroll ? window.siteScroll(el, { center }) : el.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: center ? 'center' : 'start' }));
 export const ease = (base, dt) => (still ? 1 : 1 - Math.pow(1 - base, dt / 16.67));
 
 // Toast
@@ -398,7 +400,7 @@ if (archive && files.length) {
     if (!f) return;
     if (!shown().includes(f)) $('[data-filter=all]').click();
     select(f, { user: true, focus: true });
-    f.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+    go(f);
   });
   if (fromHash()) setTimeout(() => selected.scrollIntoView({ block: 'start' }), 100);
 }
@@ -441,7 +443,7 @@ addEventListener('keydown', e => {
     const vis = shown(), i = vis.indexOf(selected);
     const to = vis[(i + (k === 'j' ? 1 : -1) + vis.length) % vis.length];
     select(to, { focus: true, user: true });
-    if (mode === 'tabs') archive.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+    if (mode === 'tabs') go(archive);
   }
 });
 
@@ -480,7 +482,7 @@ function lens(name) {
       const b = Object.assign(document.createElement('button'), { type: 'button', className: 'tlink', textContent: $('h3', card).textContent });
       b.addEventListener('click', () => {
         if (card.classList.contains('file')) return dispatchEvent(new CustomEvent('archive:open', { detail: card.id }));
-        card.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'center' });
+        go(card, true);
         const h = $('h3', card);
         h.tabIndex = -1;
         h.focus({ preventScroll: true });
@@ -544,6 +546,8 @@ if (still) $$('.mini svg').forEach(svg => svg.pauseAnimations?.());
 // Load the heavier visuals only where they make sense
 if (!forced && $('.field')?.getContext) import('./field.js').catch(err => console.warn(err));
 if ($('.drill-canvas')) import('./drill.js').catch(err => console.warn(err));
+// GSAP + Lenis motion layer: only if the CDN scripts arrived and motion is welcome
+if (!still && window.gsap && window.ScrollTrigger && window.SplitText && window.Lenis) import('./motion.js').catch(err => console.warn(err));
 if (!forced && fine.matches) import('./cursor.js').then(m => { cursorApi = m; m.init(); }).catch(err => console.warn(err));
 
 console.info('%cHello, fellow engineer.%c Source: github.com/Manvith-d/portfolio', 'font:600 13px system-ui;color:#ff5c5c', 'font:13px system-ui');

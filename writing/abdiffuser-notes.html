@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diffusion beyond images: notes from reimplementing AbDiffuser | Manvith Reddy Dalli</title>
+<meta name="description" content="What changes when a diffusion model has to generate an antibody’s amino-acid sequence and its 3D structure at the same time.">
+<meta name="theme-color" content="#0b0b0e">
+<link rel="canonical" href="https://manvith-d.github.io/portfolio/writing/abdiffuser-notes.html">
+<meta property="og:type" content="article"><meta property="og:url" content="https://manvith-d.github.io/portfolio/writing/abdiffuser-notes.html"><meta property="og:title" content="Diffusion beyond images: notes from reimplementing AbDiffuser | Manvith Reddy Dalli"><meta property="og:description" content="What changes when a diffusion model has to generate an antibody’s amino-acid sequence and its 3D structure at the same time."><meta property="og:image" content="https://manvith-d.github.io/portfolio/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@96,500..700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script>document.documentElement.classList.add('js');try{document.documentElement.dataset.side=localStorage.getItem('side')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="edge-blade" aria-hidden="true"></div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="../" aria-label="Manvith Reddy Dalli, home">MD<i aria-hidden="true"></i></a>
+    <span class="crumb mono" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Main"><a href="../#citizens"><b>01</b>Citizens</a><a href="../#projects"><b>02</b>Projects</a><a href="../#writing" aria-current="true"><b>03</b>Writing</a><a href="../#about"><b>04</b>About</a><a href="../#contact"><b>05</b>Contact</a></nav>
+    <div class="bar-tools">
+      <button class="tool guru-open" type="button" data-guru hidden aria-label="Ask Guru, a scripted guide to Manvith’s work"><span class="mag"><svg class="signal" viewBox="0 0 16 16" aria-hidden="true"><path class="bk2" d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.5"/><path class="core" d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg><span class="lbl">Ask Guru</span><kbd>/</kbd></span></button>
+      <button class="saber" type="button" aria-label="Switch to the Light Side"><span class="mag"><i class="hilt"></i><i class="blade"></i><span class="saber-label mono">Dark Side</span></span></button>
+      <button class="tool menu-open" type="button" hidden aria-haspopup="dialog" aria-controls="menu"><span class="mag">Menu</span></button>
+    </div>
+  </div>
+</header>
+<dialog class="menu" id="menu" aria-label="Site menu">
+  <button class="tool menu-close" type="button">Close</button>
+  <ol><li style="--i:0"><a href="../#citizens"><b>01</b>Citizens</a></li><li style="--i:1"><a href="../#projects"><b>02</b>Projects</a></li><li style="--i:2"><a href="../#writing"><b>03</b>Writing</a></li><li style="--i:3"><a href="../#about"><b>04</b>About</a></li><li style="--i:4"><a href="../#contact"><b>05</b>Contact</a></li></ol>
+  <div class="menu-foot">
+    <button class="btn btn-ghost menu-side" type="button"><span class="mag">Switch Side</span></button>
+    <div class="links"><a class="tlink ext" href="../resume.pdf" target="_blank" rel="noopener">Résumé</a><a class="tlink ext" href="https://github.com/Manvith-d" target="_blank" rel="noopener noreferrer">GitHub</a><a class="tlink ext" href="https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </div>
+</dialog>
+<main id="main" class="wrap">
+<article class="post">
+  <a class="back tlink" href="../#writing">← All writing</a>
+  <p class="meta mono">Machine learning · 7 min read</p>
+  <h1>Diffusion beyond images: notes from reimplementing AbDiffuser</h1>
+  <i class="ignite" aria-hidden="true"></i>
+  <p class="post-meta"><time datetime="2026-10-21">October 21, 2026</time></p>
+  <div class="post-body">
+<p>Most people meet diffusion models through image generators: start with noise, and step by step, denoise it into a picture. AbDiffuser applies the same idea to something far less forgiving: <strong>antibodies</strong>.</p>
+<p>With Pradyumna Raghavendra and Udaykumar Patel, I worked on a research implementation based on the AbDiffuser paper. Here’s what makes the problem interesting, and what implementing it taught me.</p>
+<h2>Two kinds of data, two kinds of noise</h2>
+<p>An antibody has a <strong>sequence</strong> (a string of amino acids, each one of 20 types) and a <strong>structure</strong> (the 3D coordinates of its atoms). These are different kinds of data, so they need different kinds of diffusion:</p>
+<ul><li><strong>Coordinates are continuous</strong>, so they use Gaussian diffusion: add Gaussian noise, then learn to remove it.</li><li><strong>Amino acids are categorical</strong>, so they use discrete diffusion: gradually corrupt the categories, then learn to restore them.</li></ul>
+<p>The hard part is doing both at once and keeping them consistent. A sequence that doesn’t match its generated structure isn’t a useful antibody.</p>
+<h2>A backbone built for antibodies</h2>
+<p>The model uses APMixer, the backbone proposed for this problem. Instead of treating a protein as an arbitrary graph, it takes advantage of the fact that antibodies share a common layout, mixing information along residue positions and across features.</p>
+<h2>Evaluating what you can’t eyeball</h2>
+<p>With images, you can look at the output. With antibodies, you can’t. We evaluated generated samples for <strong>sequence and structural diversity</strong>. Diversity matters because a model that keeps producing the same plausible antibody is useless for design. Diversity on its own isn’t enough, though: samples also have to be realistic, which is why evaluation needs more than one metric.</p>
+<h2>What reimplementing a paper teaches you</h2>
+<p>Reading a paper tells you what works. Implementing it shows you all the decisions the paper doesn’t spell out. Turning equations into working PyTorch and CUDA code, with a team, was the best way I’ve found to really understand a method.</p></div>
+  <div class="post-end">
+    <a class="next panel" href="flag-dont-fix.html" data-cur="file" data-tag="NEXT →"><span class="mono">Up next</span><strong>Flag, don’t fix: what bank reconciliation taught me about automation</strong></a>
+    <div class="row-links"><a class="tlink" href="https://github.com/PradyumnaRaghavendra/AbDiffuser" target="_blank" rel="noopener">AbDiffuser on GitHub ↗</a><a class="tlink" href="https://www.youtube.com/watch?v=SSFUJwct3KA" target="_blank" rel="noopener">Watch the presentation ↗</a><button class="ask" type="button" data-guru="abdiffuser" hidden><svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg>Query this post</button></div>
+  </div>
+</article>
+</main>
+<footer class="foot wrap">
+  <span>© 2026 Manvith Reddy Dalli</span>
+  <span class="mono grow">Hand-built · no frameworks</span>
+  <a class="tlink ext" href="https://github.com/Manvith-d/portfolio" target="_blank" rel="noopener noreferrer">Portfolio source</a>
+  <a class="tlink" href="../">Back to the portfolio</a>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
+<script type="module" src="../main.js"></script>
+<script type="module" src="../guru.js"></script>
+</body>
+</html>

@@ -72,7 +72,7 @@ const JUMP = {
   citizens: '#citizens', cmod: '#citizens', pbqc: '#citizens', cleanup: '#citizens', screenshot: '#citizens', badge: '#citizens',
   hedging: '#p-deep-hedging', gpu: '#p-gpu-inference-benchmark', translens: '#p-translens', community: '#p-community-insights',
   crop: '#p-crop-recommendation', cancer: '#p-cancer-genes', mindconnect: '#p-mindconnect', sports: '#p-sports-injury',
-  plate: '#p-number-plate', drone: '#p-drone-delivery', projects: '#projects',
+  plate: '#p-number-plate', drone: '#p-drone-delivery', projects: '#projects', writing: '#writing',
   experience: '#about', education: '#about', certs: '#about', contact: '#contact',
 };
 function jump(id) {
@@ -83,7 +83,8 @@ function jump(id) {
   // Wait for the dialog's focus restoration, which would otherwise cancel the smooth scroll
   setTimeout(() => {
     if (sel.startsWith('#p-')) return dispatchEvent(new CustomEvent('archive:open', { detail: sel.slice(1) }));
-    node.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+    if (window.siteScroll) window.siteScroll(node);
+    else node.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
     const h = node.querySelector('h2, h3') ?? node;
     h.tabIndex = -1;
     h.focus({ preventScroll: true });

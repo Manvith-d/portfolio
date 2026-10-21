@@ -93,7 +93,7 @@ export const TOPICS = [
       'Projected to save <strong>~309 hours a year</strong>; Manvith supported its production deployment and hypercare.',
     ],
     why: 'It replaces a daily manual reconciliation. When counts match nobody needs to look, and when they don’t, a person gets a short, precise list to investigate.',
-    next: ['pbqc', 'citizens'] },
+    links: [['Write-up', 'writing/flag-dont-fix.html']], next: ['pbqc', 'citizens'] },
   { id: 'pbqc', q: 'Tell me about Private Banking QC', keys: 'private banking qc quality control weekly 700 workbook validate validation',
     head: 'Private Banking QC', meta: 'Citizens Bank, 2026', stack: 'UiPath, REST APIs, DataTables, Excel',
     points: [
@@ -131,7 +131,7 @@ export const TOPICS = [
     ],
     why: 'Without it, traders calculate Greeks by hand across many contracts, which is slow and error-prone, and raw numbers don’t explain why a position is risky. Greek Shield automates the math and explains the risk in plain English, so exposure changes show up as alerts instead of hours later.',
     team: 'Built by Team 2: Likhith Nagaralu Gurumurthy, Manvith Reddy Dalli and Sneh Patel.',
-    links: [gh('Manvith-d/greek-shield'), ['Team repo', 'https://github.com/LikhithNG/New-Greek-shield-']],
+    links: [gh('Manvith-d/greek-shield'), ['Team repo', 'https://github.com/LikhithNG/New-Greek-shield-'], ['Write-up', 'writing/greek-shield.html']],
     next: ['monitor', 'data', 'abdiffuser'] },
   { id: 'monitor', q: 'Tell me about Options Risk Monitor', keys: 'options risk monitor local yfinance scheduler',
     head: 'Options Risk Monitor', meta: 'Related to Greek Shield', stack: 'Python, yfinance, Pandas, NumPy, SciPy, Snowflake Connector, schedule',
@@ -153,7 +153,7 @@ export const TOPICS = [
     ],
     why: 'Antibody design has two linked problems: which amino acids to use, and how they sit in 3D. Modeling both together lets researchers explore new candidate designs computationally before any lab work.',
     team: 'Built with Pradyumna Raghavendra and Udaykumar Patel at Northeastern.',
-    links: [gh('Manvith-d/AbDiffuser'), ['Team repo', 'https://github.com/PradyumnaRaghavendra/AbDiffuser'], ['Presentation', 'https://www.youtube.com/watch?v=SSFUJwct3KA']],
+    links: [gh('Manvith-d/AbDiffuser'), ['Team repo', 'https://github.com/PradyumnaRaghavendra/AbDiffuser'], ['Presentation', 'https://www.youtube.com/watch?v=SSFUJwct3KA'], ['Write-up', 'writing/abdiffuser-notes.html']],
     next: ['ai', 'hedging', 'gpu'] },
   { id: 'hedging', q: 'Tell me about Deep Hedging', keys: 'deep hedging hedge neural transaction costs delta pnl profit loss',
     head: 'Deep Hedging', meta: 'Team research project', stack: 'Python, PyTorch, Streamlit, NumPy, Matplotlib',
@@ -249,7 +249,10 @@ export const TOPICS = [
     next: ['plate', 'education'] },
 
   // Site
+  { id: 'writing', q: 'What has he written?', keys: 'writing write wrote blog blogs post posts article articles',
+    head: 'Writing', links: [['Flag, don’t fix', 'writing/flag-dont-fix.html'], ['Greek Shield', 'writing/greek-shield.html'], ['Diffusion beyond images', 'writing/abdiffuser-notes.html']],
+    next: ['cmod', 'greek', 'abdiffuser'] },
   { id: 'guru', q: 'What are you?', keys: 'guru you bot assistant chatbot chatgpt claude gpt real human',
-    head: 'I’m Guru', text: '<p>Manvith’s portfolio guide. I answer from his portfolio, résumé and project READMEs, so if something isn’t covered, I’ll say so instead of guessing.</p>',
+    head: 'I’m Guru', text: '<p>Manvith’s portfolio guide. I answer from his portfolio, résumé, write-ups and project READMEs, so if something isn’t covered, I’ll say so instead of guessing.</p>',
     next: ['hire', 'projects'] },
 ];

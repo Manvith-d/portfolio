@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flag, don’t fix: what bank reconciliation taught me about automation | Manvith Reddy Dalli</title>
+<meta name="description" content="Why the most useful automations I built at Citizens hand the final decision to a person.">
+<meta name="theme-color" content="#0b0b0e">
+<link rel="canonical" href="https://manvith-d.github.io/portfolio/writing/flag-dont-fix.html">
+<meta property="og:type" content="article"><meta property="og:url" content="https://manvith-d.github.io/portfolio/writing/flag-dont-fix.html"><meta property="og:title" content="Flag, don’t fix: what bank reconciliation taught me about automation | Manvith Reddy Dalli"><meta property="og:description" content="Why the most useful automations I built at Citizens hand the final decision to a person."><meta property="og:image" content="https://manvith-d.github.io/portfolio/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@96,500..700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script>document.documentElement.classList.add('js');try{document.documentElement.dataset.side=localStorage.getItem('side')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="edge-blade" aria-hidden="true"></div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="../" aria-label="Manvith Reddy Dalli, home">MD<i aria-hidden="true"></i></a>
+    <span class="crumb mono" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Main"><a href="../#citizens"><b>01</b>Citizens</a><a href="../#projects"><b>02</b>Projects</a><a href="../#writing" aria-current="true"><b>03</b>Writing</a><a href="../#about"><b>04</b>About</a><a href="../#contact"><b>05</b>Contact</a></nav>
+    <div class="bar-tools">
+      <button class="tool guru-open" type="button" data-guru hidden aria-label="Ask Guru, a scripted guide to Manvith’s work"><span class="mag"><svg class="signal" viewBox="0 0 16 16" aria-hidden="true"><path class="bk2" d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.5"/><path class="core" d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg><span class="lbl">Ask Guru</span><kbd>/</kbd></span></button>
+      <button class="saber" type="button" aria-label="Switch to the Light Side"><span class="mag"><i class="hilt"></i><i class="blade"></i><span class="saber-label mono">Dark Side</span></span></button>
+      <button class="tool menu-open" type="button" hidden aria-haspopup="dialog" aria-controls="menu"><span class="mag">Menu</span></button>
+    </div>
+  </div>
+</header>
+<dialog class="menu" id="menu" aria-label="Site menu">
+  <button class="tool menu-close" type="button">Close</button>
+  <ol><li style="--i:0"><a href="../#citizens"><b>01</b>Citizens</a></li><li style="--i:1"><a href="../#projects"><b>02</b>Projects</a></li><li style="--i:2"><a href="../#writing"><b>03</b>Writing</a></li><li style="--i:3"><a href="../#about"><b>04</b>About</a></li><li style="--i:4"><a href="../#contact"><b>05</b>Contact</a></li></ol>
+  <div class="menu-foot">
+    <button class="btn btn-ghost menu-side" type="button"><span class="mag">Switch Side</span></button>
+    <div class="links"><a class="tlink ext" href="../resume.pdf" target="_blank" rel="noopener">Résumé</a><a class="tlink ext" href="https://github.com/Manvith-d" target="_blank" rel="noopener noreferrer">GitHub</a><a class="tlink ext" href="https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </div>
+</dialog>
+<main id="main" class="wrap">
+<article class="post">
+  <a class="back tlink" href="../#writing">← All writing</a>
+  <p class="meta mono">Automation · 6 min read</p>
+  <h1>Flag, don’t fix: what bank reconciliation taught me about automation</h1>
+  <i class="ignite" aria-hidden="true"></i>
+  <p class="post-meta"><time datetime="2026-10-21">October 21, 2026</time></p>
+  <div class="post-body">
+<p>In 2026 I spent nine months as an Automation Developer co-op on the SOEA Automation Development Team at Citizens Bank. The two automations I worked on most, CMOD Reject Reporting and Private Banking QC, are projected to save more than 1,000 hours a year between them.</p>
+<p>Neither of them makes a final call on its own. That was deliberate, and it’s the most useful design lesson I took away from the co-op.</p>
+<h2>The job is reconciliation, not judgment</h2>
+<p>CMOD Reject Reporting reads daily reports, reconciles rejected-item counts against a shared workbook, and flags any mismatch for a person to review. Counting and comparing is exactly what software is good at: it’s repetitive, it has a right answer, and it’s easy to get wrong when a tired human does it every morning.</p>
+<p>Deciding <em>why</em> two numbers disagree is different. It needs context the bot doesn’t have. So the automation does the part that has a right answer and hands over a short, precise list for the part that doesn’t. When the counts match, nobody needs to look. When they don’t, someone knows exactly where to start.</p>
+<h2>Treat the exception path as the main path</h2>
+<p>Most of the build used UiPath’s REFramework, which separates <strong>business exceptions</strong> (the data is valid but breaks a rule) from <strong>system exceptions</strong> (something technical failed and might work on retry). That split changed how I thought about mismatches. A mismatch isn’t the bot failing; it’s the bot doing its job. It deserves the same care in logging, reporting and testing as the happy path.</p>
+<h2>Ship a review artifact, not a verdict</h2>
+<p>Private Banking QC runs weekly. It consolidates report and API data, validates activity, and produces a structured Excel workbook that people review and archive. The workbook <em>is</em> the product. It has to be laid out so a reviewer can scan it quickly, and it has to be kept, because in banking a clear record of what was checked matters as much as the check itself.</p>
+<h2>Hypercare is where trust is earned</h2>
+<p>I supported both production deployment and hypercare, the period right after go-live when the team watches an automation closely. A bot that ran perfectly in testing still has to prove itself on real data, with real people relying on its output. Hypercare is when an automation stops being a project and becomes something the business trusts.</p>
+<h2>Write it down before you build it</h2>
+<p>One of my projects never became code at all: a solution design for checking screenshot-storage configuration across automation projects and reporting missing or inconsistent settings. Writing the design first made the scope, the checks and the remediation path explicit before anyone spent time building.</p>
+<blockquote>Automate the counting. Flag the exceptions. Leave the judgment to people.</blockquote>
+<p>That’s the rule I’d give anyone starting out in automation. It makes the bot simpler, makes the people around it more confident, and it’s why those 1,000 projected hours are hours that people actually get back.</p></div>
+  <div class="post-end">
+    <a class="next panel" href="greek-shield.html" data-cur="file" data-tag="NEXT →"><span class="mono">Up next</span><strong>Greek Shield: from raw option quotes to risk alerts</strong></a>
+    <div class="row-links"><a class="tlink" href="../#citizens">See the Citizens projects →</a><a class="tlink" href="mailto:reddydalli.m@northeastern.edu">Talk to me about automation ↗</a><button class="ask" type="button" data-guru="citizens" hidden><svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg>Query this post</button></div>
+  </div>
+</article>
+</main>
+<footer class="foot wrap">
+  <span>© 2026 Manvith Reddy Dalli</span>
+  <span class="mono grow">Hand-built · no frameworks</span>
+  <a class="tlink ext" href="https://github.com/Manvith-d/portfolio" target="_blank" rel="noopener noreferrer">Portfolio source</a>
+  <a class="tlink" href="../">Back to the portfolio</a>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
+<script type="module" src="../main.js"></script>
+<script type="module" src="../guru.js"></script>
+</body>
+</html>

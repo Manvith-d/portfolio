@@ -682,17 +682,18 @@ html:not(.js) .drill{display:none}
 }
 
 /* Case-file diagrams (archive). Classes: l line, a accent line, f accent fill, k ink fill, b box */
-.mini{position:relative;height:170px;margin:0 0 var(--s5);border:1px solid var(--line);border-radius:var(--r-xs);background:color-mix(in oklab,var(--surface-2) 55%,transparent);overflow:hidden}
-.mini svg{position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
-.mini .l{fill:none;stroke:var(--line-ui);stroke-width:1}
-.mini .a{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round}
+.mini{position:relative;aspect-ratio:520/176;margin:0 0 var(--s5);border:1px solid var(--line);border-radius:var(--r-xs);background:color-mix(in oklab,var(--surface-2) 55%,transparent);overflow:hidden}
+.mini svg{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px)}
+.mini .l{fill:none;stroke:var(--muted);stroke-opacity:.6;stroke-width:1.6}
+.mini .a{fill:none;stroke:var(--accent);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .mini .f{fill:var(--accent)}
 .mini .k{fill:var(--ink)}
-.mini .b{fill:var(--surface);stroke:var(--line-ui);stroke-width:1}
-.mini .l-fill{fill:var(--line-ui);opacity:.6}
-.mini .grid{stroke:var(--line);stroke-width:1}
+.mini .b{fill:var(--surface);stroke:var(--muted);stroke-opacity:.65;stroke-width:1.5}
+.mini .l-fill{fill:var(--muted);opacity:.5}
+.mini .grid{stroke:var(--line-ui);stroke-opacity:.35;stroke-width:1}
 .mini .dash{stroke-dasharray:3 4}
-.mini text{font:500 8.5px var(--f-mono);letter-spacing:.12em;fill:var(--faint)}
+.mini text{font:500 11px var(--f-mono);letter-spacing:.06em;fill:var(--muted)}
+[data-side=dark] .mini .f,[data-side=dark] .mini .a{filter:drop-shadow(0 0 3px color-mix(in oklab,var(--saber) 75%,transparent))}
 .mini .t-a{fill:var(--accent)}
 .mini .plate{font:600 25px var(--f-mono);letter-spacing:.04em;fill:var(--ink)}
 .mini .ocr{font-size:12px;letter-spacing:0}
@@ -717,5 +718,21 @@ html:not(.js) .drill{display:none}
 @keyframes m-lock{0%,45%{transform:scale(1.12);opacity:0}55%,95%{transform:scale(1);opacity:1}100%{opacity:0}}
 .mini .type{opacity:0;animation:m-type 3.6s steps(1) infinite;animation-delay:calc(1.9s + var(--i,0) * 90ms)}
 @keyframes m-type{0%{opacity:1}40%{opacity:0}}
-@media(max-width:600px){.mini{height:150px}.mini text{font-size:11px}.mini .plate{font-size:27px}}
+@media(max-width:600px){.mini text{font-size:17px;letter-spacing:.02em}.mini .ocr{font-size:15px}.mini .plate{font-size:27px}}
 @media(prefers-reduced-motion:reduce){.mini .draw{stroke-dashoffset:0}.mini .grow,.mini .grow-x{transform:none}.mini .lang[style*="--i:0"],.mini .type{opacity:1}.mini .scan{opacity:0}.mini .lock{opacity:1;transform:none}}
+
+/* Lenis smooth scroll (from lenis.css) */
+html.lenis,html.lenis body{height:auto}
+html.lenis{scroll-behavior:auto}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+.lenis [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-smooth iframe{pointer-events:none}
+/* Vanta Force aura behind the portrait */
+.aura{position:absolute;inset:-28%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+.aura.on{opacity:.9}
+[data-side=dark] .aura{mix-blend-mode:screen}
+[data-side=light] .aura{mix-blend-mode:difference}
+[data-side=light] .aura.on{opacity:.8}
+.aura canvas{width:100%!important;height:100%!important}
+/* Variable proximity letters */
+.name .vp{font-variation-settings:"wght" 600,"opsz" 96}

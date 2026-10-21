@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Greek Shield: from raw option quotes to risk alerts | Manvith Reddy Dalli</title>
+<meta name="description" content="How our team layered market data through S3 and six Snowflake layers, computed Black–Scholes Greeks, and put AI agents on top.">
+<meta name="theme-color" content="#0b0b0e">
+<link rel="canonical" href="https://manvith-d.github.io/portfolio/writing/greek-shield.html">
+<meta property="og:type" content="article"><meta property="og:url" content="https://manvith-d.github.io/portfolio/writing/greek-shield.html"><meta property="og:title" content="Greek Shield: from raw option quotes to risk alerts | Manvith Reddy Dalli"><meta property="og:description" content="How our team layered market data through S3 and six Snowflake layers, computed Black–Scholes Greeks, and put AI agents on top."><meta property="og:image" content="https://manvith-d.github.io/portfolio/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@96,500..700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script>document.documentElement.classList.add('js');try{document.documentElement.dataset.side=localStorage.getItem('side')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="edge-blade" aria-hidden="true"></div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="../" aria-label="Manvith Reddy Dalli, home">MD<i aria-hidden="true"></i></a>
+    <span class="crumb mono" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Main"><a href="../#citizens"><b>01</b>Citizens</a><a href="../#projects"><b>02</b>Projects</a><a href="../#writing" aria-current="true"><b>03</b>Writing</a><a href="../#about"><b>04</b>About</a><a href="../#contact"><b>05</b>Contact</a></nav>
+    <div class="bar-tools">
+      <button class="tool guru-open" type="button" data-guru hidden aria-label="Ask Guru, a scripted guide to Manvith’s work"><span class="mag"><svg class="signal" viewBox="0 0 16 16" aria-hidden="true"><path class="bk2" d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.5"/><path class="core" d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg><span class="lbl">Ask Guru</span><kbd>/</kbd></span></button>
+      <button class="saber" type="button" aria-label="Switch to the Light Side"><span class="mag"><i class="hilt"></i><i class="blade"></i><span class="saber-label mono">Dark Side</span></span></button>
+      <button class="tool menu-open" type="button" hidden aria-haspopup="dialog" aria-controls="menu"><span class="mag">Menu</span></button>
+    </div>
+  </div>
+</header>
+<dialog class="menu" id="menu" aria-label="Site menu">
+  <button class="tool menu-close" type="button">Close</button>
+  <ol><li style="--i:0"><a href="../#citizens"><b>01</b>Citizens</a></li><li style="--i:1"><a href="../#projects"><b>02</b>Projects</a></li><li style="--i:2"><a href="../#writing"><b>03</b>Writing</a></li><li style="--i:3"><a href="../#about"><b>04</b>About</a></li><li style="--i:4"><a href="../#contact"><b>05</b>Contact</a></li></ol>
+  <div class="menu-foot">
+    <button class="btn btn-ghost menu-side" type="button"><span class="mag">Switch Side</span></button>
+    <div class="links"><a class="tlink ext" href="../resume.pdf" target="_blank" rel="noopener">Résumé</a><a class="tlink ext" href="https://github.com/Manvith-d" target="_blank" rel="noopener noreferrer">GitHub</a><a class="tlink ext" href="https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </div>
+</dialog>
+<main id="main" class="wrap">
+<article class="post">
+  <a class="back tlink" href="../#writing">← All writing</a>
+  <p class="meta mono">Data engineering · 7 min read</p>
+  <h1>Greek Shield: from raw option quotes to risk alerts</h1>
+  <i class="ignite" aria-hidden="true"></i>
+  <p class="post-meta"><time datetime="2026-10-21">October 21, 2026</time></p>
+  <div class="post-body">
+<p>An option’s value moves with the price of the underlying asset, the time left until expiry, volatility and interest rates, all at once. Anyone holding options needs to know how exposed they are to each of those, and they need to know it before the market moves, not after.</p>
+<p>Greek Shield is a team project I built with Likhith Nagaralu Gurumurthy and Sneh Patel. It turns raw market data into risk signals someone can act on.</p>
+<h2>The pipeline at a glance</h2>
+<ol><li><strong>Ingest:</strong> AAPL options data comes from Yahoo Finance.</li><li><strong>Land:</strong> raw data is stored in AWS S3.</li><li><strong>Model:</strong> it moves through six Snowflake layers, each refining the one before.</li><li><strong>Compute:</strong> Black–Scholes Greeks are calculated in the warehouse.</li><li><strong>Act:</strong> four AI agents, a Streamlit dashboard and Slack alerts turn the numbers into decisions.</li></ol>
+<h2>Why land raw data first</h2>
+<p>Keeping an untouched copy of the source data in S3 means that when the logic changes (and it always does), we can rebuild every downstream table from the original inputs instead of hoping the old transformations were right.</p>
+<h2>Six layers, one job each</h2>
+<p>Each Snowflake layer has a single responsibility, moving from raw quotes toward analytics-ready tables. Small, single-purpose layers are easier to test, easier to debug and easier to explain to a teammate than one giant transformation.</p>
+<h2>The Greeks in one minute</h2>
+<ul><li><strong>Delta (Δ):</strong> how much the option’s price moves when the underlying moves.</li><li><strong>Gamma (Γ):</strong> how quickly delta itself changes.</li><li><strong>Theta (Θ):</strong> how much value the option loses as time passes.</li><li><strong>Vega (ν):</strong> sensitivity to changes in volatility.</li><li><strong>Rho (ρ):</strong> sensitivity to interest rates.</li></ul>
+<p>Black–Scholes gives closed-form formulas for these. We implemented them as Snowflake UDFs, so they’re computed right next to the data, then aggregated them into portfolio-level metrics for automated risk monitoring.</p>
+<h2>Where the AI agents fit</h2>
+<p>Numbers alone don’t tell a risk manager what to do. On top of the Greeks sits a four-agent workflow that combines Snowflake Cortex with GPT-based reasoning. Together the agents analyze risk, generate plain-language explanations, trigger Slack alerts, and surface insights in the Streamlit dashboard.</p>
+<h2>From dashboards to alerts</h2>
+<p>The Streamlit dashboard is for exploring. Slack alerts are for the moments that can’t wait: they go to where people already are, so a risk threshold being crossed doesn’t depend on someone having the dashboard open.</p>
+<h2>What I’d tell someone building something similar</h2>
+<ul><li>Keep the raw data. You will need to reprocess it.</li><li>Compute where the data lives instead of shipping it around.</li><li>Make every alert specific enough that the reader knows what to do next.</li></ul></div>
+  <div class="post-end">
+    <a class="next panel" href="abdiffuser-notes.html" data-cur="file" data-tag="NEXT →"><span class="mono">Up next</span><strong>Diffusion beyond images: notes from reimplementing AbDiffuser</strong></a>
+    <div class="row-links"><a class="tlink" href="https://github.com/Manvith-d/greek-shield" target="_blank" rel="noopener">Greek Shield on GitHub ↗</a><a class="tlink" href="https://github.com/Manvith-d/options-risk-monitor" target="_blank" rel="noopener">Options Risk Monitor ↗</a><button class="ask" type="button" data-guru="greek" hidden><svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg>Query this post</button></div>
+  </div>
+</article>
+</main>
+<footer class="foot wrap">
+  <span>© 2026 Manvith Reddy Dalli</span>
+  <span class="mono grow">Hand-built · no frameworks</span>
+  <a class="tlink ext" href="https://github.com/Manvith-d/portfolio" target="_blank" rel="noopener noreferrer">Portfolio source</a>
+  <a class="tlink" href="../">Back to the portfolio</a>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
+<script type="module" src="../main.js"></script>
+<script type="module" src="../guru.js"></script>
+</body>
+</html>
