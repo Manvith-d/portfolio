@@ -26,15 +26,17 @@ export const TOPICS = [
   { id: 'data', q: 'What’s his data engineering experience?', keys: 'data engineering engineer pipeline pipelines etl elt warehouse snowflake medallion lakehouse',
     head: 'Data engineering', points: [
       '<strong>Greek Shield:</strong> ELT from Yahoo Finance through AWS S3 into a six-layer Snowflake medallion architecture (RAW → DATA → FEATURES → PROCESSED → ALERTS → AGENTS), with Greeks computed as Snowflake UDFs.',
+      '<strong>OntoBridge:</strong> ontology-driven alignment of 12 sources, then generated bronze, silver and gold star schemas in Spark SQL for a Fabric Lakehouse.',
       '<strong>Agentic Universe:</strong> Python and SQL ETL pipelines processing 1M+ data points for distributed AI workflows.',
       '<strong>CloudFuze:</strong> API-based ETL into a scalable analytics platform, plus anomaly detection that improved data compliance and reliability by 30%.',
       '<strong>Citizens Bank:</strong> enterprise data collection, validation, transformation and delivery inside banking automations.',
       '<strong>Options Risk Monitor</strong> and a <strong>Sports Injury Management</strong> database with views, triggers and stored procedures.',
-    ], next: ['greek', 'monitor', 'ai'] },
+    ], next: ['greek', 'ontobridge', 'ai'] },
   { id: 'ai', q: 'What AI and ML work has he done?', keys: 'ai ml machine learning artificial intelligence model models research deep neural llm llms genai generative',
     head: 'AI and machine learning', points: [
       '<strong>AbDiffuser:</strong> diffusion models for generative antibody design, trained on multi-GPU clusters with 10x training throughput.',
       '<strong>Greek Shield:</strong> a four-agent workflow combining Snowflake Cortex and GPT-based reasoning.',
+      '<strong>OntoBridge:</strong> LangGraph agents with SPARQL-grounded RAG, guarded LLM adjudication and human review.',
       '<strong>Deep Hedging:</strong> neural hedging policies that account for transaction costs.',
       '<strong>GPU Inference Benchmark:</strong> continuous batching and latency/throughput measurement for language-model serving.',
       '<strong>TransLens:</strong> an LLM app that simplifies and translates documents.',
@@ -68,8 +70,8 @@ export const TOPICS = [
     links: [['Email', 'mailto:reddydalli.m@northeastern.edu'], ['LinkedIn', 'https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257'], ['Résumé', 'resume.pdf'], ['GitHub', 'https://github.com/Manvith-d']],
     next: ['hire', 'experience'] },
   { id: 'projects', q: 'What has he built?', keys: 'projects project built build portfolio favorite favourite highlight highlights featured',
-    head: 'Projects', text: '<p>The featured two are <strong>Greek Shield</strong> (options risk analytics on Snowflake with AI agents) and <strong>AbDiffuser</strong> (diffusion models for antibody design). There are a dozen more, from deep hedging to GPU inference benchmarking.</p>',
-    next: ['greek', 'abdiffuser', 'translens'] },
+    head: 'Projects', text: '<p>The featured two are <strong>Greek Shield</strong> (options risk analytics on Snowflake with AI agents) and <strong>AbDiffuser</strong> (diffusion models for antibody design). There are eleven more, from OntoBridge’s ontology-alignment agents to deep hedging and GPU inference benchmarking.</p>',
+    next: ['greek', 'abdiffuser', 'ontobridge'] },
 
   // Citizens Bank
   { id: 'citizens', q: 'What did he do at Citizens Bank?', keys: 'citizens bank co-op coop internship automation developer soea uipath banking rpa',
@@ -155,6 +157,17 @@ export const TOPICS = [
     team: 'Built with Pradyumna Raghavendra and Udaykumar Patel at Northeastern.',
     links: [gh('Manvith-d/AbDiffuser'), ['Team repo', 'https://github.com/PradyumnaRaghavendra/AbDiffuser'], ['Presentation', 'https://www.youtube.com/watch?v=SSFUJwct3KA'], ['Write-up', 'writing/abdiffuser-notes.html']],
     next: ['ai', 'hedging', 'gpu'] },
+  { id: 'ontobridge', q: 'Tell me about OntoBridge', keys: 'ontobridge onto bridge ontology ontologies rdf owl sparql langgraph semantic schema schemas alignment mapping lineage provenance fabric lakehouse star spark knowledge graph rag',
+    head: 'OntoBridge, agentic semantic data platform', meta: 'Open-source project', stack: 'Python, LangGraph, LangChain, rdflib (RDF/OWL, SPARQL), PROV-O, Spark SQL, Microsoft Fabric Lakehouse, FastAPI, SQLite, pytest, GitHub Actions',
+    points: [
+      '<strong>LangGraph agents</strong> (profiler, retriever, mapper, validator, review queue, lineage) align 12 synthetic CSV and JSON sources from insurance, retail, healthcare and finance with five RDF/OWL ontologies.',
+      '<strong>SPARQL graph retrieval</strong> finds candidate properties and builds the grounding context for an optional LLM (a free local model works). The model can only choose a retrieved candidate and can’t auto-accept weak evidence.',
+      'Generates <strong>Spark SQL star schemas</strong> for a Fabric Lakehouse across 4 domains: 30 gold tables built from 14 reusable conformed dimensions, with 65 validation checks passing in CI.',
+      'Two <strong>FastAPI microservices</strong> cover runs, human review, a hash-chained audit log, PROV-O provenance and read-only SPARQL.',
+      'On 54 held-out column names it auto-accepted 43 mappings with <strong>100% precision</strong>. Every miss went to a reviewer or abstained instead of being silently wrong.',
+    ],
+    why: 'Every new data source starts with someone working out what each column means and where it belongs in the warehouse. OntoBridge automates the confident cases, asks a person about the rest, and records who decided what, so the generated tables can be trusted and audited.',
+    links: [gh('Manvith-d/ontobridge')], next: ['data', 'ai', 'greek'] },
   { id: 'hedging', q: 'Tell me about Deep Hedging', keys: 'deep hedging hedge neural transaction costs delta pnl profit loss',
     head: 'Deep Hedging', meta: 'Team research project', stack: 'Python, PyTorch, Streamlit, NumPy, Matplotlib',
     points: [

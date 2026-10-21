@@ -1,5 +1,25 @@
 [
   {
+    "title": "OntoBridge",
+    "description": "LangGraph agents align 12 messy CSV and JSON sources with RDF/OWL ontologies using SPARQL graph retrieval, send uncertain mappings to human review, record PROV-O lineage and a hash-chained audit log, and generate Spark SQL star schemas for a Fabric Lakehouse across four domains.",
+    "tags": [
+      "Python",
+      "LangGraph",
+      "SPARQL",
+      "RDF & OWL",
+      "Spark SQL",
+      "Microsoft Fabric",
+      "FastAPI"
+    ],
+    "kind": "Agentic semantic data platform",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/ontobridge"
+      ]
+    ]
+  },
+  {
     "title": "Deep Hedging",
     "description": "A research implementation of neural hedging policies that account for transaction costs and discrete trading. Compares learned strategies with classical delta hedging and evaluates downside risk using simulated profit-and-loss distributions.",
     "tags": [
