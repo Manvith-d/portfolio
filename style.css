@@ -304,6 +304,9 @@ html.js .keys-open[hidden]{display:inline}
 .schematic{position:relative;height:250px;border-bottom:1px solid var(--line);background:color-mix(in oklab,var(--surface-2) 70%,transparent);overflow:hidden;margin:1px 1px 0}
 .schematic svg{position:absolute;inset:8px 0 30px;width:100%;height:calc(100% - 38px)}
 .dossier-body{padding:var(--s6);display:flex;flex-direction:column;flex:1}
+/* An odd card out spans the row on wide screens, schematic beside the text */
+@media(min-width:1200px){.dossier:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .dossier:last-child:nth-child(odd) .schematic{height:auto;min-height:300px;border-bottom:0;border-right:1px solid var(--line);margin:1px 0 1px 1px}}
 .dossier .meta{color:var(--faint);margin-bottom:var(--s3)}
 .dossier h3{font-size:clamp(1.75rem,1.4rem + 1vw,2.25rem);margin-bottom:var(--s3)}
 .dossier .desc{color:var(--muted)}

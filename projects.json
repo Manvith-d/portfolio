@@ -41,6 +41,25 @@
     ]
   },
   {
+    "title": "Forma",
+    "description": "Six LangGraph agents act as a personal trainer, dietitian and medication-safety reviewer: a periodized plan, daily calorie targets and pantry recipes, checked against a 34-rule rulebook with verbatim FDA-label and guideline evidence, over a bronze-silver-gold DuckDB pipeline of 29 licensed public sources, with a live WebSocket dashboard.",
+    "tags": [
+      "Python",
+      "LangGraph",
+      "Ollama",
+      "DuckDB",
+      "FastAPI",
+      "WebSockets"
+    ],
+    "kind": "Agentic AI health platform",
+    "links": [
+      [
+        "GitHub",
+        "https://github.com/Manvith-d/forma"
+      ]
+    ]
+  },
+  {
     "title": "Deep Hedging",
     "description": "A research implementation of neural hedging policies that account for transaction costs and discrete trading. Compares learned strategies with classical delta hedging and evaluates downside risk using simulated profit-and-loss distributions.",
     "tags": [
