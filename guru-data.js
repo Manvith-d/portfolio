@@ -194,7 +194,7 @@ export const TOPICS = [
       '<strong>29 personas</strong> pass every safety gate in CI. Eight were held out and written in other people’s phrasing; on their first run 3 of 8 passed, and every miss was a safe stall at intake rather than an unsafe plan.',
     ],
     why: 'Generic fitness plans ignore what makes people different: their medications, conditions and what is actually in their kitchen. Forma plans around all three, cites where every rule comes from, and sends people to a clinician when that matters more than a plan.',
-    links: [gh('Manvith-d/forma')], next: ['aegisflow', 'ai', 'data'] },
+    links: [['Live demo', 'https://forma-nnq8.onrender.com'], gh('Manvith-d/forma')], next: ['aegisflow', 'ai', 'data'] },
   { id: 'hedging', q: 'Tell me about Deep Hedging', keys: 'deep hedging hedge neural transaction costs delta pnl profit loss',
     head: 'Deep Hedging', meta: 'Team research project', stack: 'Python, PyTorch, Streamlit, NumPy, Matplotlib',
     points: [
