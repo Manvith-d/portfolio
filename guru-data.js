@@ -189,7 +189,7 @@ export const TOPICS = [
     points: [
       '<strong>Six LangGraph agents</strong> (coach, intake, medical, trainer, nutritionist, chef) turn a goal, timeline and weekly schedule into a periodized plan, a calorie and macro target for each day, and meals cooked from your pantry.',
       'A <strong>medallion data pipeline</strong> in DuckDB (bronze, silver, gold) over 29 licensed sources: USDA FoodData Central, 51 FDA drug labels, the U.S. physical activity and dietary guidelines, NIH fact sheets and 17 CC BY papers. A license allowlist and 13 quality checks gate every build.',
-      'The Medical agent applies a <strong>34-rule rulebook</strong> in which every rule must match a verbatim label or guideline passage (statins and grapefruit, MAOIs and aged cheese, insulin and exercise, pregnancy, kidney disease and more), and it can send the plan back to the Trainer and Chef.',
+      'The Medical agent applies a <strong>36-rule rulebook</strong> in which every rule must match a verbatim label or guideline passage (statins and grapefruit, MAOIs and aged cheese, insulin and exercise, pregnancy, kidney disease and more), and it can send the plan back to the Trainer and Chef.',
       'Numbers come from deterministic engines, not the model: Mifflin-St Jeor energy with MET-based training, loss capped at 1% of body weight a week, calorie floors, and USDA nutrition for the exact grams of every meal.',
       '<strong>29 personas</strong> pass every safety gate in CI. Eight were held out and written in other people’s phrasing; on their first run 3 of 8 passed, and every miss was a safe stall at intake rather than an unsafe plan.',
     ],

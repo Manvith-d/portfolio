@@ -42,7 +42,7 @@
   },
   {
     "title": "Forma",
-    "description": "Six LangGraph agents act as a personal trainer, dietitian and medication-safety reviewer: a periodized plan, daily calorie targets and pantry recipes, checked against a 34-rule rulebook with verbatim FDA-label and guideline evidence, over a bronze-silver-gold DuckDB pipeline of 29 licensed public sources, with a live WebSocket dashboard.",
+    "description": "Six LangGraph agents act as a personal trainer, dietitian and medication-safety reviewer: a periodized plan, daily calorie targets and pantry recipes, checked against a 36-rule rulebook with verbatim FDA-label and guideline evidence, over a bronze-silver-gold DuckDB pipeline of 29 licensed public sources, with a live WebSocket dashboard.",
     "tags": [
       "Python",
       "LangGraph",
