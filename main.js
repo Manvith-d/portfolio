@@ -195,7 +195,7 @@ if (timeline) {
 // "I build ___": the blade sweeps across to swap in the next phrase (pauses on hover, off under reduced motion)
 const rotor = $('.rotor-w');
 if (rotor && !still) {
-  const words = ['enterprise automations', 'Snowflake data pipelines', 'multi-agent risk analytics', 'diffusion models for antibodies', 'LLM-powered document tools'];
+  const words = ['enterprise automations', 'Snowflake data pipelines', 'agentic AI platforms', 'multi-agent risk analytics', 'diffusion models for antibodies'];
   const text = $('.rotor-t', rotor), blade = $('.rotor-blade', rotor);
   let i = 0, hold = false;
   rotor.parentElement.addEventListener('pointerenter', () => (hold = true));
@@ -215,20 +215,6 @@ if (rotor && !still) {
     blade.animate([{ transform: 'translateX(0)', opacity: 1 }, { transform: `translateX(${w2}px)`, opacity: 1, offset: 0.85 }, { transform: `translateX(${w2}px)`, opacity: 0 }], { duration: 560, easing: out, fill: 'forwards' });
     text.animate([{ clipPath: 'inset(-10% 100% -10% 0)' }, { clipPath: 'inset(-10% 0 -10% 0)' }], { duration: 560, easing: out, fill: 'forwards' });
   }
-}
-
-// Name sheen and badge foil follow the pointer
-if (fine.matches) {
-  const name = $('.name');
-  name?.addEventListener('pointermove', e => {
-    const r = name.getBoundingClientRect();
-    name.style.setProperty('--hx', `${e.clientX - r.left}px`);
-    name.style.setProperty('--hy', `${e.clientY - r.top}px`);
-  });
-  $$('.badge').forEach(b => b.addEventListener('pointermove', e => {
-    const r = b.getBoundingClientRect();
-    b.style.setProperty('--foil', `${((e.clientX - r.left) / r.width) * 100}%`);
-  }));
 }
 
 // Touch delight: a saber ring where you tap
@@ -315,7 +301,6 @@ function build() {
       tab.innerHTML = `<span class="n">${$('.n', f).textContent}</span><span class="t">${$('h3', f).textContent}</span><span class="kind">${kindOf(f)}</span>`;
       tab.addEventListener('click', () => select(f, { user: true }));
       list.append(tab);
-      $('.file-head', f).dataset.case = `CASE FILE ${$('.n', f).textContent} · ${$('.kicker', f)?.textContent ?? ''}`;
       f.setAttribute('role', 'tabpanel');
       f.setAttribute('aria-labelledby', tab.id);
       f.tabIndex = 0;

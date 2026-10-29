@@ -22,7 +22,7 @@ I turn complex problems into practical solutions by using automation, data, and 
 
 SOEA Automation Development Team · 2026
 
-Contributed to automations projected to save **over 1,000 hours annually** across CMOD Reject Reporting and Private Banking QC.
+Built automations projected to save **over 1,000 hours annually** across CMOD Reject Reporting and Private Banking QC.
 
 | Project | Contribution | Impact / stage |
 | --- | --- | --- |
@@ -63,7 +63,7 @@ Team projects retain their original ownership and contributor credits. Research 
 
 ## Background
 
-M.S. Information Systems, Northeastern University (2024–2026). B.E. Information Science & Engineering, B.M.S. College of Engineering (2020–2024).
+M.S. Information Systems, Northeastern University (Sep 2024–Dec 2026). B.E. Information Science & Engineering, B.M.S. College of Engineering (2020–2024).
 
 Experience includes Citizens Bank; **[Agentic Universe](https://agenticuniverse.ai) (formerly Formi CxAI)**, where I worked on AI research and data engineering; and CloudFuze, focused on API-based data integration.
 

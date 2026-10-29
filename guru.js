@@ -23,7 +23,7 @@ export function match(q) {
     const score = qs.filter(w => keysOf(t).some(k => near(w, k))).length;
     if (score > top) { top = score; best = t; }
   }
-  return best;
+  return top === 1 && qs.length >= 4 ? null : best;  // one shared word in a long question is a guess, not an answer
 }
 
 // Follow-up intents, answered from the matching field of a topic
@@ -154,8 +154,8 @@ function answer(hit, done) {
     if (t.why || t.team) last = t;
     // A project answer also offers its own follow-ups as one-click questions
     const follow = hit.intent ? [] : [
-      t.why && [`How is ${short(t)} useful?`, { topic: t, intent: 'why' }],
-      t.team && [`Who built ${short(t)}?`, { topic: t, intent: 'team' }],
+      t.why && [t.whyQ ?? `How is ${short(t)} useful?`, { topic: t, intent: 'why' }],
+      t.team && [t.teamQ ?? `Who built ${short(t)}?`, { topic: t, intent: 'team' }],
     ].filter(Boolean);
     replies([...follow, ...questions(t.next)].slice(0, 4), t.id);
   }, still ? 0 : 320 + Math.random() * 280);
@@ -215,7 +215,7 @@ function selfCheck() {
   const greek = byId.greek;
   [['Why should we hire him?', null, 'hire', null], ['tell me about greek shield', null, 'greek', null],
    ['how is it useful', greek, 'greek', 'why'], ['who built it?', greek, 'greek', 'team'], ['what tech does it use', greek, 'greek', 'stack'],
-   ['is he available for hire?', null, 'contact', null], ['antibody diffusion', null, 'abdiffuser', null], ['ocr', null, 'plate', null],
+   ['is he available for hire?', null, 'contact', null], ['Are you on OPT? When can you start?', null, 'contact', null], ['antibody diffusion', null, 'abdiffuser', null], ['ocr', null, 'plate', null],
    ['what’s his data engineering experience?', null, 'data', null], ['what is the weather in boston', null, undefined, undefined]]
     .forEach(([q, prev, id, intent]) => {
       const r = resolve(q, prev);

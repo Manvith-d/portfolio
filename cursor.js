@@ -101,6 +101,6 @@ export function init() {
   // Re-resolve after content swaps under a still pointer (archive tabs, Guru, filters)
   addEventListener('click', () => requestAnimationFrame(() => resolve(document.elementFromPoint(P.x, P.y))));
   onFrame(tick);
-  wanted = store() !== 'off';
+  wanted = store() === 'on'; // opt-in with C: a cursor that follows the pointer reads as a template default
   addEventListener('pointermove', e => { if ((e.pointerType === 'mouse') !== on && wanted) apply(); }, { passive: true });
 }

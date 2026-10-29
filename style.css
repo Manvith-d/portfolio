@@ -161,11 +161,8 @@ html.js .reveal:not(.in){opacity:0;transform:translateY(14px)}
 .hero-copy{grid-column:1/span 7}
 .eyebrow{color:var(--accent);margin-bottom:var(--s5)}
 .name{position:relative;font-size:var(--t-display);font-weight:600;font-variation-settings:"opsz" 96;letter-spacing:-.035em;line-height:.95}
-.name>span:not(.sheen){display:block}
+.name>span{display:block}
 .name .dot{display:inline;color:var(--accent)}
-.sheen{position:absolute;inset:0;pointer-events:none;color:transparent;background:radial-gradient(240px circle at var(--hx,-999px) var(--hy,-999px),var(--saber-core),transparent 60%);-webkit-background-clip:text;background-clip:text;opacity:0;transition:opacity var(--d-3)}
-.sheen span{display:block}
-@media(hover:hover) and (pointer:fine){.name:hover .sheen{opacity:.55}}
 .ignite{position:relative;display:block;width:min(100%,640px);height:2px;margin:var(--s5) 0 var(--s6);background:var(--blade-core);box-shadow:var(--blade);border-radius:2px;transform-origin:left}
 .ignite::before{content:"";position:absolute;left:-14px;top:-1px;width:10px;height:4px;border-radius:1px;background:var(--faint)}
 .ignite::after{content:"";position:absolute;right:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--saber-core);box-shadow:0 0 12px 4px var(--saber);opacity:0}
@@ -306,7 +303,7 @@ html.js .keys-open[hidden]{display:inline}
 .dossier-body{padding:var(--s6);display:flex;flex-direction:column;flex:1}
 /* An odd card out spans the row on wide screens, schematic beside the text */
 @media(min-width:1200px){.dossier:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .dossier:last-child:nth-child(odd) .schematic{height:auto;min-height:300px;border-bottom:0;border-right:1px solid var(--line);margin:1px 0 1px 1px}}
+  .dossier:last-child:nth-child(odd) .schematic{height:340px;align-self:start;position:sticky;top:88px;border-bottom:0;margin:1px 0 1px 1px}}  /* the diagram stays in view beside the long text instead of floating in empty space */
 .dossier .meta{color:var(--faint);margin-bottom:var(--s3)}
 .dossier h3{font-size:clamp(1.75rem,1.4rem + 1vw,2.25rem);margin-bottom:var(--s3)}
 .dossier .desc{color:var(--muted)}
@@ -369,7 +366,6 @@ html.js .dossier:not(.in) .slab{opacity:0;transform:translateY(6px)}
 .file-head .n{color:var(--accent)}
 .file-head h3{font-size:1.4rem}
 .file-head .kind{color:var(--faint);margin-left:auto}
-.file .kicker{color:var(--faint);margin-bottom:var(--s3)}
 .file p.desc{color:var(--muted);margin-top:var(--s3)}
 .file .links{margin-top:var(--s5)}
 .file .ask{margin-top:var(--s4)}
@@ -390,8 +386,7 @@ html.js .dossier:not(.in) .slab{opacity:0;transform:translateY(6px)}
 .archive.tabs .file[hidden]{display:none}
 .archive.tabs .file{min-height:var(--panel-h,0)}
 .archive.tabs .file-head{display:block}
-.archive.tabs .file-head::before{content:attr(data-case);display:block;font:500 .72rem/1.4 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:var(--s3)}
-.archive.tabs .file-head .n,.archive.tabs .file-head .kind,.archive.tabs .kicker{display:none}
+.archive.tabs .file-head .n,.archive.tabs .file-head .kind{display:none}
 .archive.tabs .file-head h3{font-size:1.75rem}
 .archive.tabs .file{animation:panel-in var(--d-3) var(--e-out)}
 @keyframes panel-in{from{opacity:0;transform:translateY(6px)}}
@@ -743,4 +738,3 @@ html.lenis{scroll-behavior:auto}
 .lenis [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-smooth iframe{pointer-events:none}
 /* Variable proximity letters */
-.name .vp{font-variation-settings:"wght" 600,"opsz" 96}
