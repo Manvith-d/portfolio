@@ -403,7 +403,7 @@ html.js .dossier:not(.in) .slab{opacity:0;transform:translateY(6px)}
 .archive.accordion .file{padding:var(--s5)}
 
 /* Writing: dispatches */
-.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5)}
+.posts{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s5)}
 .post-card{display:flex;flex-direction:column;transition:transform var(--d-1)}
 .post-card:active{transform:scale(.985)}
 .post-card .meta{display:flex;justify-content:space-between;gap:var(--s3);color:var(--faint);letter-spacing:.08em;white-space:nowrap}

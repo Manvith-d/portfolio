@@ -290,8 +290,8 @@ export const TOPICS = [
     next: ['plate', 'education'] },
 
   // Site
-  { id: 'writing', q: 'What has he written?', keys: 'writing write wrote blog blogs post posts article articles',
-    head: 'Writing', links: [['Flag, don’t fix', 'writing/flag-dont-fix.html'], ['Greek Shield', 'writing/greek-shield.html'], ['Diffusion beyond images', 'writing/abdiffuser-notes.html']],
+  { id: 'writing', q: 'What has he written?', keys: 'writing write wrote blog blogs post posts article articles build-a-thon buildathon hackathon workshop copilot microsoft',
+    head: 'Writing', links: [['Where the workflow ends', 'writing/where-the-workflow-ends.html'], ['Flag, don’t fix', 'writing/flag-dont-fix.html'], ['Greek Shield', 'writing/greek-shield.html'], ['Diffusion beyond images', 'writing/abdiffuser-notes.html']],
     next: ['cmod', 'greek', 'abdiffuser'] },
   { id: 'guru', q: 'What are you?', keys: 'guru you bot assistant chatbot chatgpt claude gpt real human',
     head: 'I’m Guru', text: '<p>Manvith’s portfolio guide. I answer from his portfolio, résumé, write-ups and project READMEs, so if something isn’t covered, I’ll say so instead of guessing.</p>',

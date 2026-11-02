@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the workflow ends: notes from Microsoft’s Agent Build-a-Thon | Manvith Reddy Dalli</title>
+<meta name="description" content="What a Copilot Studio workshop taught me about splitting work between deterministic workflows and agents, and why one right answer doesn’t make an agent ready.">
+<meta name="theme-color" content="#0b0b0e">
+<link rel="canonical" href="https://manvith-d.github.io/portfolio/writing/where-the-workflow-ends.html">
+<meta property="og:type" content="article"><meta property="og:url" content="https://manvith-d.github.io/portfolio/writing/where-the-workflow-ends.html"><meta property="og:title" content="Where the workflow ends: notes from Microsoft’s Agent Build-a-Thon | Manvith Reddy Dalli"><meta property="og:description" content="What a Copilot Studio workshop taught me about splitting work between deterministic workflows and agents, and why one right answer doesn’t make an agent ready."><meta property="og:image" content="https://manvith-d.github.io/portfolio/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@96,500..700&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script>document.documentElement.classList.add('js');try{document.documentElement.dataset.side=localStorage.getItem('side')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<canvas class="field" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="edge-blade" aria-hidden="true"></div>
+<header class="bar">
+  <div class="bar-in">
+    <a class="mark" href="../" aria-label="Manvith Reddy Dalli, home">MD<i aria-hidden="true"></i></a>
+    <span class="crumb mono" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Main"><a href="../#citizens"><b>01</b>Citizens</a><a href="../#projects"><b>02</b>Projects</a><a href="../#writing" aria-current="true"><b>03</b>Writing</a><a href="../#about"><b>04</b>About</a><a href="../#contact"><b>05</b>Contact</a></nav>
+    <div class="bar-tools">
+      <button class="tool guru-open" type="button" data-guru hidden aria-label="Ask Guru, a scripted guide to Manvith’s work"><span class="mag"><svg class="signal" viewBox="0 0 16 16" aria-hidden="true"><path class="bk2" d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.5"/><path class="core" d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg><span class="lbl">Ask Guru</span><kbd>/</kbd></span></button>
+      <button class="saber" type="button" aria-label="Switch to the Light Side"><span class="mag"><i class="hilt"></i><i class="blade"></i><span class="saber-label mono">Dark Side</span></span></button>
+      <button class="tool menu-open" type="button" hidden aria-haspopup="dialog" aria-controls="menu"><span class="mag">Menu</span></button>
+    </div>
+  </div>
+</header>
+<dialog class="menu" id="menu" aria-label="Site menu">
+  <button class="tool menu-close" type="button">Close</button>
+  <ol><li style="--i:0"><a href="../#citizens"><b>01</b>Citizens</a></li><li style="--i:1"><a href="../#projects"><b>02</b>Projects</a></li><li style="--i:2"><a href="../#writing"><b>03</b>Writing</a></li><li style="--i:3"><a href="../#about"><b>04</b>About</a></li><li style="--i:4"><a href="../#contact"><b>05</b>Contact</a></li></ol>
+  <div class="menu-foot">
+    <button class="btn btn-ghost menu-side" type="button"><span class="mag">Switch Side</span></button>
+    <div class="links"><a class="tlink ext" href="../resume.pdf" target="_blank" rel="noopener">Résumé</a><a class="tlink ext" href="https://github.com/Manvith-d" target="_blank" rel="noopener noreferrer">GitHub</a><a class="tlink ext" href="https://www.linkedin.com/in/manvith-reddy-dalli-38a06a257" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+  </div>
+</dialog>
+<main id="main" class="wrap">
+<article class="post">
+  <a class="back tlink" href="../#writing">← All writing</a>
+  <h1>Where the workflow ends: notes from Microsoft’s Agent Build-a-Thon</h1>
+  <i class="ignite" aria-hidden="true"></i>
+  <p class="post-meta"><time datetime="2026-11-02">November 2, 2026</time> · 3 min read</p>
+  <div class="post-body">
+<p>Most of my automation work has been about telling a system exactly what to do. At Citizens Bank that meant UiPath workflows that read reports, reconcile counts and flag whatever doesn’t match. At Microsoft’s Agent Build-a-Thon, a hands-on Copilot Studio workshop, the question was different: what does it take to build a system that decides what to do next?</p>
+<p>We watched one agent, Pemberton, get built end to end. It’s a daily chief of staff that captures, prioritizes and schedules tasks. The build went one piece at a time: the model, the instructions, knowledge sources, tools, deployment and evaluation. Then we built our own the same way. These are the ideas I’m taking back to my own work.</p>
+<h2>Not every step should be an agent</h2>
+<p>The most useful idea of the day was where to draw the line. When a step is predictable, it belongs in a workflow: same input, same steps, same result. An agent earns its place where the next step depends on context, where it has to read a request, choose a tool and decide what happens next. The two aren’t rivals. An agent can call a workflow for the part that has a right answer, and a workflow can call an agent for the part that doesn’t.</p>
+<p>I’d already arrived at that split without a name for it. In Forma, my fitness coach, agents handle the conversation, but every calorie target, rate of loss and safety rule comes from deterministic code. In AegisFlow, agents decide insurance claims, and Kafka workflows with idempotent retries make sure each claim is decided exactly once.</p>
+<h2>Instructions are the interface</h2>
+<p>Much of an agent’s reliability is set before it runs. The workshop framed instructions as GCSE: the <strong>goal</strong>, the <strong>context</strong> the agent works in, the <strong>sources</strong> it may use, and the <strong>expectations</strong> for how it behaves and what it returns. Vague instructions get you a demo. Explicit ones, with boundaries and a clear answer for “I don’t know”, get you something people can depend on.</p>
+<h2>Tools are where an agent meets real systems</h2>
+<p>An agent that can only talk is a chatbot. Skills, connectors, REST APIs and the Model Context Protocol are what let it read a calendar, file a request or update a record. MCP stood out because I’d used it in AegisFlow, where agents act through MCP tools instead of calling systems directly. It’s the difference between an agent that describes the work and one that does it.</p>
+<h2>One right answer isn’t a test</h2>
+<p>The part I’d underline is evaluation. We built evaluation sets and scored responses for groundedness, completeness, relevance, abstention and semantic similarity, with stricter exact or partial matches where there is a single correct answer. An agent isn’t ready because it answered correctly once.</p>
+<p>Forma taught me that the hard way. It passed every persona I had written, and then real conversations on its public demo broke it in ways I hadn’t imagined: “3 days in a week” read as a one-week timeline, a torn ACL treated as everyday knee pain. A sweep of 148 checks over real phrasings found 48 deviations. Every one is fixed now, and every one is a regression test.</p>
+<h2>The old disciplines still apply</h2>
+<p>What surprised me was how familiar the rest felt. Exception handling, validation, modular design and observability matter as much in an agentic system as they did in the workflows I built at Citizens. The exceptions are just harder to predict, so you need better ways to catch them.</p>
+<blockquote>Use a workflow where the answer is known. Use an agent where it isn’t. Test both as if they’ll be wrong.</blockquote>
+<p>The future of automation isn’t swapping workflows for agents. It’s knowing where deterministic execution ends, where reasoning adds value, and how to join the two responsibly. Thanks to the Microsoft team for a session spent building, not just watching.</p></div>
+  <div class="post-end">
+    <a class="next panel" href="flag-dont-fix.html" data-cur="file" data-tag="NEXT →"><span class="mono">Up next</span><strong>Flag, don’t fix: what bank reconciliation taught me about automation</strong></a>
+    <div class="row-links"><a class="tlink" href="../#aegisflow">See AegisFlow →</a><a class="tlink" href="mailto:reddydalli.m@northeastern.edu">Talk to me about agents ↗</a><button class="ask" type="button" data-guru="ai" hidden><svg class="glyph" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 5V1h4M11 1h4v4M15 11v4h-4M5 15H1v-4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5 11.5 8 8 11.5 4.5 8z" fill="currentColor"/></svg>Query this post</button></div>
+  </div>
+</article>
+</main>
+<footer class="foot wrap">
+  <span>© 2026 Manvith Reddy Dalli</span>
+  <span class="mono grow">Hand-built · no build step</span>
+  <a class="tlink ext" href="https://github.com/Manvith-d/portfolio" target="_blank" rel="noopener noreferrer">Portfolio source</a>
+  <a class="tlink" href="../">Back to the portfolio</a>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js" integrity="sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw" crossorigin="anonymous" defer></script>
+<script type="module" src="../main.js"></script>
+<script type="module" src="../guru.js"></script>
+</body>
+</html>
